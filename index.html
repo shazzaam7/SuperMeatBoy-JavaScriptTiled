@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no,width=device-width">
+  <link href="otter.css" rel="stylesheet" type="text/css">
+  <link type="image/png" sizes="16x16" rel="icon" href="otter/ottericon2.png">
+  <title>OTTER 3.0 - JavaScript</title>
+
+  <style>
+    
+  </style>
+
+</head>
+
+<body>
+
+  <div id="divIzbornik">
+    <button id="btnMaps"><span class="emoji">&#127757;</span> Maps</button>
+
+    <button class="orange" id="btnSetupGame"><span class="emoji">&#128736;</span> Setup game #</button>
+
+    <button class="green" id="btnStart"><span class="emoji">&#127937;</span> START</button>
+    <button class="red" id="btnStop"><span class="emoji">&#10060;</span> STOP</button>
+
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <!-- Info -->
+  <div class="infowrapper">
+    <p class="info"> <input type="checkbox" name="showOutput" id="showOutput">
+      Output info:</p>
+    <textarea id="taInfo" class="info" rows="4" disabled hidden></textarea>
+  </div>
+
+  <!-- Settings -->
+
+  <script src="otter/lib-00-GameSettings.js"></script>
+
+  <!-- Maps -->
+
+  <script src="level1.js"></script>
+
+  <!-- OTTER -->
+
+  <script src="otter/lib-01-tiled.js"></script>
+  <script src="otter/lib-02-sensing.js"></script>
+  <script src="otter/lib-03-display.js"></script>
+  <script src="otter/lib-04-engine.js"></script>
+  <script src="otter/lib-05-game.js"></script>
+  <script src="otter/lib-06-main.js"></script>
+
+  <!-- JavaScript Code -->
+  <script src="JavaScriptCode/00-staticka.js"></script>
+  <script src="JavaScriptCode/01-likovi.js"></script>
+  <script src="JavaScriptCode/02-postavke.js"></script>
+  <script src="JavaScriptCode/03-logika.js"></script>
+</body>
+
+</html>
