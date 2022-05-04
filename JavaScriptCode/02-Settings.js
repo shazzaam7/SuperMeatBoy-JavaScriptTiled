@@ -7,7 +7,7 @@
 /// <reference path="../otter/lib-05-game.js"/>
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
-/// <reference path="01-likovi.js"/>
+/// <reference path="01-Characters.js"/>
 
 let btnSetupGame = document.getElementById("btnSetupGame");
 btnSetupGame.addEventListener("click", setup);
@@ -40,6 +40,6 @@ function setuplevel1() {
   
   GAME.activeWorldMap.setCollisions("Platforma");
   
-  Staticka.meatboy = new IgriviLik(4*60, 18*60, GAME.getSpriteLayer("Meat"));
+  Staticka.meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
   GAME.addSprite(Staticka.meatboy);
 }

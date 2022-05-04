@@ -8,8 +8,8 @@
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
 
-/// <reference path="01-likovi.js"/>
-/// <reference path="02-postavke.js"/>
+/// <reference path="01-Characters.js"/>
+/// <reference path="02-Settings.js"/>
 
 function update_main() {
   
@@ -17,7 +17,12 @@ function update_main() {
     case "level1":
       level1();
       break;
-  
+    case "level2":
+
+      break;
+    case "level3":
+
+      break;
     default:
       break;
   }

@@ -9,10 +9,37 @@
 //#endregion
 
 
-class IgriviLik extends Sprite {
+class PlayableCharacter extends Sprite {
     constructor(x, y, layer) {
         super(x, y, 60, 60);
 
+        this.frame_sets = {};
+        this.layer = layer;
+    }
+    moveRight() {
+        this.direction = 90;
+        this.velocity_x += 2;
+      }
+    
+      moveLeft() {
+        this.direction = 270;
+        this.velocity_x -= 2;
+      }
+    
+      moveUp() {
+        this.direction = 0;
+        this.velocity_y -= 2;
+      }
+    
+      moveDown() {
+        this.direction = 180;
+        this.velocity_y += 2;
+      }
+};
+
+class MeatBoy extends PlayableCharacter {
+    constructor(x,y,layer) {
+        super(x,y,layer);
         this.frame_sets = {
             "up": [6],
             "walk-up": [6],
@@ -23,18 +50,6 @@ class IgriviLik extends Sprite {
             "left": [1],
             "walk-left": [2,3,4]
         };
-        this.layer = layer;
         this.visible = true;
-        this.okvir = true;
     }
-
-    moveLeft() {
-        this.direction = 270;
-        this.velocity_x -= 2;
-    } 
-    
-    moveRight() {
-        this.direction = 90;
-        this.velocity_x += 2;
-    }
-};
+}
