@@ -18,23 +18,34 @@ class PlayableCharacter extends Sprite {
     }
     moveRight() {
         this.direction = 90;
-        this.velocity_x += 2;
+        this.velocity_x += 3.5;
       }
     
-      moveLeft() {
+    moveLeft() {
         this.direction = 270;
-        this.velocity_x -= 2;
+        this.velocity_x -= 3.5;
       }
     
-      moveUp() {
+    moveUp() {
         this.direction = 0;
-        this.velocity_y -= 2;
+        this.velocity_y -= 2.5;
       }
     
-      moveDown() {
+    moveDown() {
         this.direction = 180;
-        this.velocity_y += 2;
+        this.velocity_y += 2.5;
       }
+    
+    /*updatePosition(gravity = 0, friction = 1.5) {
+      this.x_old = this.x;
+      this.y_old = this.y;
+      this.velocity_y += gravity;
+      this.x += this.velocity_x;
+      this.y += this.velocity_y;
+
+      this.velocity_x *= friction;
+      this.velocity_y *= friction;
+    }*/
 };
 
 class MeatBoy extends PlayableCharacter {

@@ -38,8 +38,8 @@ function setuplevel1() {
 
   GAME.clearSprites();
   
-  GAME.activeWorldMap.setCollisions("Platforma");
+  GAME.activeWorldMap.setCollisions("Floor");
   
-  Staticka.meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(Staticka.meatboy);
+  StaticClass.meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
+  GAME.addSprite(StaticClass.meatboy);
 }

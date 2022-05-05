@@ -15,14 +15,14 @@ function update_main() {
   
   switch (GAME.activeWorldMap.name) {
     case "level1":
-      level1();
+      characterControl();
       break;
-    case "level2":
-
+    /*case "level2":
+      characterControl();
       break;
     case "level3":
-
-      break;
+      characterControl();
+      break;*/
     default:
       break;
   }
@@ -31,17 +31,17 @@ function update_main() {
   
 };
 
-function level1() {
+function characterControl() {
   
   if (SENSING.left.active) {
-    Staticka.meatboy.moveLeft();
+    StaticClass.meatboy.moveLeft();
   }
 
   if (SENSING.right.active) {
-    Staticka.meatboy.moveRight();
+    StaticClass.meatboy.moveRight();
   }
 
   if (SENSING.up.active) {
-    Staticka.meatboy.jump();
+    StaticClass.meatboy.jump(60);
   }
 };
