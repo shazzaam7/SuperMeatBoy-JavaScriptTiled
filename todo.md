@@ -4,11 +4,11 @@ TODO:
 - {x} Static class for characters
 - {x} Finish setup for levels
 - {x} Basic character movement (Left, Right, Jump)
-- {} Jumping from walls
-- {} Finish line aka Bandage Girl
-- {} Audio
-- {} Start working on actual levels 
+- {x} Finish line aka Bandage Girl
+- {} Audio (Working on it)
+- {} Jumping from walls (Working on it)
 - {} Spinning Saws
+- {} Start working on actual levels 
 - {} Boss (Either CHAD fighting for Dr. Fetus or Dr. Fetus)
 - {} Redesign interface
 

@@ -8,6 +8,7 @@
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
 /// <reference path="01-Characters.js"/>
+/// <reference path="02-Audio.js"/>
 
 let btnSetupGame = document.getElementById("btnSetupGame");
 btnSetupGame.addEventListener("click", setup);
@@ -40,6 +41,9 @@ function setuplevel1() {
   
   GAME.activeWorldMap.setCollisions("Floor");
   
-  StaticClass.meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(StaticClass.meatboy);
+  StaticObject.Meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
+  GAME.addSprite(StaticObject.Meatboy);
+
+  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+  GAME.addSprite(StaticObject.Goal);
 }

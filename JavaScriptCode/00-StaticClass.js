@@ -1,9 +1,10 @@
-class StaticClass {
+class StaticObject {
     constructor() {
-        if (this instanceof StaticClass) {
-            throw("Ovo je staticka klasa!");
+        if (this instanceof StaticObject) {
+            throw("This is static class!");
         };
     };
     
-    static meatboy;
+    static Meatboy;
+    static Goal;
 }

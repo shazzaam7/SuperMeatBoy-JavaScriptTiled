@@ -36,16 +36,17 @@ class PlayableCharacter extends Sprite {
         this.velocity_y += 2.5;
       }
     
-    /*updatePosition(gravity = 0, friction = 1.5) {
+    //updatePosition - Change gravity and friction in OTTER
+    updatePosition(gravity = 4, friction = 10) {
       this.x_old = this.x;
       this.y_old = this.y;
       this.velocity_y += gravity;
       this.x += this.velocity_x;
       this.y += this.velocity_y;
-
+  
       this.velocity_x *= friction;
       this.velocity_y *= friction;
-    }*/
+    }
 };
 
 class MeatBoy extends PlayableCharacter {
@@ -63,4 +64,15 @@ class MeatBoy extends PlayableCharacter {
         };
         this.visible = true;
     }
+}
+
+class Goal extends Item {
+  constructor(layer) {
+    super(layer);
+    this.visible = true;
+  }
+
+  updatePosition() {
+
+  }
 }

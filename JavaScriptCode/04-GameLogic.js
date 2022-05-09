@@ -9,7 +9,8 @@
 //#endregion
 
 /// <reference path="01-Characters.js"/>
-/// <reference path="02-Settings.js"/>
+/// <reference path="02-Audio.js"/>
+/// <reference path="03-Settings.js"/>
 
 function update_main() {
   
@@ -34,14 +35,19 @@ function update_main() {
 function characterControl() {
   
   if (SENSING.left.active) {
-    StaticClass.meatboy.moveLeft();
+    StaticObject.Meatboy.moveLeft();
   }
 
   if (SENSING.right.active) {
-    StaticClass.meatboy.moveRight();
+    StaticObject.Meatboy.moveRight();
   }
 
   if (SENSING.up.active) {
-    StaticClass.meatboy.jump(60);
+    StaticObject.Meatboy.jump(60); //60
+    Audio.jumpSound.play();
+  }
+
+  if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
+    console.log("Touching");
   }
 };
