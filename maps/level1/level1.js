@@ -78,6 +78,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":7,
+         "name":"Enemy",
+         "objects":[
+                {
+                 "gid":937,
+                 "height":60,
+                 "id":28,
+                 "name":"Saw",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60,
+                 "x":1350,
+                 "y":750
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Enemy"
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":5,
          "name":"Goal",
          "objects":[
@@ -143,8 +172,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":27,
+ "nextlayerid":8,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

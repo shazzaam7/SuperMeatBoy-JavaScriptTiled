@@ -26,7 +26,7 @@ function update_main() {
       break;*/
     default:
       break;
-  }
+  };
   
   GAME.update();
   
@@ -36,18 +36,22 @@ function characterControl() {
   
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();
-  }
+  };
 
   if (SENSING.right.active) {
     StaticObject.Meatboy.moveRight();
-  }
+  };
 
   if (SENSING.up.active) {
-    StaticObject.Meatboy.jump(60); //60
-    Audio.jumpSound.play();
-  }
+    StaticObject.Meatboy.jump();
+  };
 
   if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
     console.log("Touching");
-  }
+  };
+
+  if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw)) {
+    Audio.deathSound.play();
+    StaticObject.Meatboy.start(4*60, 18*60);
+  };
 };

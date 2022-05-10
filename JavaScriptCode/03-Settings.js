@@ -28,10 +28,10 @@ function setup() {
     default:
       throw "Ne postoji setup za " + GAME.activeWorldMap.name;
       break;
-  }
+  };
 
   render_main();
-}
+};
 
 /* LEVELS */
 
@@ -46,4 +46,7 @@ function setuplevel1() {
 
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
   GAME.addSprite(StaticObject.Goal);
-}
+
+  StaticObject.SpinningSaw = new Enemy(GAME.getSpriteLayer("Saw"));
+  GAME.addSprite(StaticObject.SpinningSaw);
+};

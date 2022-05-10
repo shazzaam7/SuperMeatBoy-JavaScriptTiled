@@ -15,38 +15,45 @@ class PlayableCharacter extends Sprite {
 
         this.frame_sets = {};
         this.layer = layer;
-    }
+    };
     moveRight() {
         this.direction = 90;
         this.velocity_x += 3.5;
-      }
+    };
     
     moveLeft() {
         this.direction = 270;
         this.velocity_x -= 3.5;
-      }
+    };
     
     moveUp() {
         this.direction = 0;
         this.velocity_y -= 2.5;
-      }
+    };
     
     moveDown() {
         this.direction = 180;
         this.velocity_y += 2.5;
-      }
+    };
     
+    jump(h = 60) {
+
+      if (!this.jumping) {
+    
+        this.jumping = true;
+        this.velocity_y -= h;
+        Audio.jumpSound.play();
+      };
+    };
     //updatePosition - Change gravity and friction in OTTER
-    updatePosition(gravity = 4, friction = 10) {
-      this.x_old = this.x;
-      this.y_old = this.y;
-      this.velocity_y += gravity;
-      this.x += this.velocity_x;
-      this.y += this.velocity_y;
-  
-      this.velocity_x *= friction;
-      this.velocity_y *= friction;
-    }
+    updatePosition(gravity, friction) {
+      super.updatePosition(gravity = 3.5, friction = 0.9);
+    };
+
+    start(levelx,levely) {
+      this.x = levelx;
+      this.y = levely;
+    };
 };
 
 class MeatBoy extends PlayableCharacter {
@@ -63,16 +70,27 @@ class MeatBoy extends PlayableCharacter {
             "walk-left": [2,3,4]
         };
         this.visible = true;
-    }
-}
+    };
+};
 
 class Goal extends Item {
   constructor(layer) {
     super(layer);
     this.visible = true;
-  }
+  };
 
   updatePosition() {
 
-  }
+  };
+};
+
+class Enemy extends Item {
+  constructor(layer) {
+    super(layer);
+    this.visible = true;
+  };
+
+  updatePosition() {
+
+  };
 }
