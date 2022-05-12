@@ -36,7 +36,7 @@ class PlayableCharacter extends Sprite {
         this.velocity_y += 2.5;
     };
     
-    jump(h = 60) {
+    jump(h = 69) {
 
       if (!this.jumping) {
     
@@ -47,12 +47,46 @@ class PlayableCharacter extends Sprite {
     };
     //updatePosition - Change gravity and friction in OTTER
     updatePosition(gravity, friction) {
-      super.updatePosition(gravity = 3.5, friction = 0.9);
+      super.updatePosition(gravity = 3.5, friction = 0.86);
     };
 
     start(levelx,levely) {
       this.x = levelx;
       this.y = levely;
+    };
+
+    touching(sprite) {
+      if (sprite.visible == false) {
+        if (sprite instanceof Wall) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+  
+      let a = {
+        left: this.x,
+        right: this.x + this.width,
+        top: this.y,
+        bottom: this.y + this.height
+      };
+  
+      let b = {
+        left: sprite.x,
+        right: sprite.x + sprite.width,
+        top: sprite.y,
+        bottom: sprite.y + sprite.height
+      };
+  
+      let result = a.left <= b.right &&
+        b.left <= a.right &&
+        a.top <= b.bottom &&
+        b.top <= a.bottom;
+  
+      // samo lijevo i desno ne radi
+      // let result = a.left <= b.right && b.left <= a.right;
+  
+      return result;
     };
 };
 
@@ -90,7 +124,23 @@ class Enemy extends Item {
     this.visible = true;
   };
 
+  moveUp() {
+    this.direction = 0;
+    this.velocity_y -= 2.5;
+  };
+
+  updatePosition() {
+    
+  };
+}
+
+class Wall extends Item {
+  constructor(layer) {
+    super(layer);
+    this.visible = true;
+  };
+
   updatePosition() {
 
-  };
+  }
 }

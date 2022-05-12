@@ -78,6 +78,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"Wall",
+         "objects":[
+                {
+                 "gid":14,
+                 "height":300,
+                 "id":38,
+                 "name":"W1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60,
+                 "x":1379,
+                 "y":780
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Wall"
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"Enemy",
          "objects":[
@@ -91,7 +120,7 @@
                  "visible":true,
                  "width":60,
                  "x":1350,
-                 "y":750
+                 "y":870
                 }],
          "opacity":1,
          "properties":[
@@ -172,8 +201,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":29,
+ "nextlayerid":12,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

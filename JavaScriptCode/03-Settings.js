@@ -17,10 +17,10 @@ function setup() {
 
   GAME.clearSprites();
 
-  let odabrana = GAME.activeWorldMap.name;
-  GameSettings.output(odabrana);
+  let selected = GAME.activeWorldMap.name;
+  GameSettings.output(selected);
 
-  switch (odabrana) {
+  switch (selected) {
     case "level1":
       setuplevel1();
       break;
@@ -49,4 +49,7 @@ function setuplevel1() {
 
   StaticObject.SpinningSaw = new Enemy(GAME.getSpriteLayer("Saw"));
   GAME.addSprite(StaticObject.SpinningSaw);
+
+  StaticObject.Wall = new Wall(GAME.getSpriteLayer("W1"));
+  GAME.addSprite(StaticObject.Wall);
 };

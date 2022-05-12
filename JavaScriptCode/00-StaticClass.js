@@ -8,4 +8,5 @@ class StaticObject {
     static Meatboy;
     static SpinningSaw;
     static Goal;
+    static Wall;
 }

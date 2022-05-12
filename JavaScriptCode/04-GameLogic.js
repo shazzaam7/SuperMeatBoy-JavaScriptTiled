@@ -54,4 +54,17 @@ function characterControl() {
     Audio.deathSound.play();
     StaticObject.Meatboy.start(4*60, 18*60);
   };
+
+  if (StaticObject.Meatboy.touching(StaticObject.Wall)) {
+    jump();
+  }
 };
+
+
+function jump() {
+  if (SENSING.up.active) {
+    StaticObject.Meatboy.jumping = true;
+  } else {
+    StaticObject.Meatboy.jumping = false;
+  }
+}

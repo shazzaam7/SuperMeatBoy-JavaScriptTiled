@@ -6,7 +6,7 @@ TODO:
 - {x} Basic character movement (Left, Right, Jump)
 - {x} Finish line aka Bandage Girl
 - {x} Audio (Basics are done, just need to implement more audio effects into HTML and JavaScript)
-- {} Jumping from walls (Working on it)
+- {} Jumping from walls (Needs more work)
 - {} Spinning Saws (Implemented, they kill you, but still aren't spinning or moving)
 - {} Start working on actual levels 
 - {} Boss (Either CHAD fighting for Dr. Fetus or Dr. Fetus)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="32" height="21" tilewidth="60" tileheight="60" infinite="0" nextlayerid="8" nextobjectid="29">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="32" height="21" tilewidth="60" tileheight="60" infinite="0" nextlayerid="12" nextobjectid="44">
  <editorsettings>
   <export target="../../level1.js" format="js"/>
  </editorsettings>
@@ -65,11 +65,17 @@
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 </data>
  </layer>
+ <objectgroup id="9" name="Wall">
+  <properties>
+   <property name="class" value="Wall"/>
+  </properties>
+  <object id="38" name="W1" gid="14" x="1379" y="780" width="60" height="300"/>
+ </objectgroup>
  <objectgroup id="7" name="Enemy">
   <properties>
    <property name="class" value="Enemy"/>
   </properties>
-  <object id="28" name="Saw" gid="937" x="1350" y="750" width="60" height="60"/>
+  <object id="28" name="Saw" gid="937" x="1350" y="870" width="60" height="60"/>
  </objectgroup>
  <objectgroup id="5" name="Goal">
   <properties>
