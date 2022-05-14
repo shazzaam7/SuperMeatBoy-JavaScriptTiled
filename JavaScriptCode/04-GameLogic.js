@@ -55,9 +55,15 @@ function characterControl() {
     StaticObject.Meatboy.start(4*60, 18*60);
   };
 
-  if (StaticObject.Meatboy.touching(StaticObject.Wall)) {
-    jump();
+  for (let index = 0; index < StaticObject.Wall.length; index++) {
+    if (StaticObject.Meatboy.touching(StaticObject.Wall[index])) {
+      jump();
+    }
+    
   }
+  /*if (StaticObject.Meatboy.touching(StaticObject.Wall[0])) {
+    jump();
+  }*/
 };
 
 

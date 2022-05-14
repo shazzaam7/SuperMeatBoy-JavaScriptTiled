@@ -45,7 +45,7 @@ class PlayableCharacter extends Sprite {
         Audio.jumpSound.play();
       };
     };
-    //updatePosition - Change gravity and friction in OTTER
+
     updatePosition(gravity, friction) {
       super.updatePosition(gravity = 3.5, friction = 0.86);
     };
@@ -140,7 +140,7 @@ class Wall extends Item {
     this.visible = true;
   };
 
-  updatePosition() {
+  /*updatePosition() {
 
-  }
+  }*/
 }

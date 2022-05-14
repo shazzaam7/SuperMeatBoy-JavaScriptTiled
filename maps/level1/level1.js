@@ -82,15 +82,39 @@
          "name":"Wall",
          "objects":[
                 {
-                 "gid":14,
+                 "gid":51,
+                 "height":900,
+                 "id":49,
+                 "name":"W3",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60,
+                 "x":60.01,
+                 "y":240
+                }, 
+                {
+                 "gid":51,
+                 "height":660,
+                 "id":50,
+                 "name":"W2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60,
+                 "x":1799.99,
+                 "y":120
+                }, 
+                {
+                 "gid":51,
                  "height":300,
-                 "id":38,
+                 "id":51,
                  "name":"W1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":60,
-                 "x":1379,
+                 "x":1379.99,
                  "y":780
                 }],
          "opacity":1,
@@ -201,8 +225,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":44,
+ "nextlayerid":13,
+ "nextobjectid":53,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
