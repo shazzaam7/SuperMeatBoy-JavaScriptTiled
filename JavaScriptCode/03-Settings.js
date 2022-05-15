@@ -50,7 +50,7 @@ function setuplevel1() {
   StaticObject.SpinningSaw = new Enemy(GAME.getSpriteLayer("Saw"));
   GAME.addSprite(StaticObject.SpinningSaw);
 
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 5; index++) {
     let i = index + 1;
     StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
     GAME.addSprite(StaticObject.Wall[index]);

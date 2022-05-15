@@ -476,36 +476,6 @@ class Sprite extends GameWorldObjectAnimator {
 
 
 } //// Sprite
-
-/**
- * Klasa: Item
- * - Predstavlja predmet kojeg skupljamo.
- * - Nema animacije i crta se u ObjectLayer.
- * - Dovoljno je poslati layer u kojem se nalazi. Pročitat će pozicije iz mape.
- */
-class Item extends Sprite {
-  /**
-  * 
-  * @param {Layer} layer 
-  */
-  constructor(layer) {
-    super(layer.x, layer.y, layer.width, layer.height);
-    // this.frame_set = [1];
-    this.frame_sets = {
-      "down": [1],
-      "walk-down": [1],
-      "left": [1],
-      "walk-left": [1],
-      "right": [1],
-      "walk-right": [1],
-      "up": [1],
-      "walk-up": [1]
-    }
-
-    this.layer = layer;
-  } //// constructor
-}
-
 /**
  * Klasa: PlatformCollider
  * - koristi se za kolizije s platformama

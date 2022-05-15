@@ -107,6 +107,24 @@ class MeatBoy extends PlayableCharacter {
     };
 };
 
+class Item extends Sprite {
+  constructor(layer) {
+    super(layer.x, layer.y, layer.width, layer.height);
+    this.frame_sets = {
+      "down": [1],
+      "walk-down": [1],
+      "left": [1],
+      "walk-left": [1],
+      "right": [1],
+      "walk-right": [1],
+      "up": [1],
+      "walk-up": [1]
+    }
+
+    this.layer = layer;
+  }
+}
+
 class Goal extends Item {
   constructor(layer) {
     super(layer);
@@ -122,11 +140,6 @@ class Enemy extends Item {
   constructor(layer) {
     super(layer);
     this.visible = true;
-  };
-
-  moveUp() {
-    this.direction = 0;
-    this.velocity_y -= 2.5;
   };
 
   updatePosition() {

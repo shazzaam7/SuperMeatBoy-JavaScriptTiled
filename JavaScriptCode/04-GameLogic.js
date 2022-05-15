@@ -59,11 +59,7 @@ function characterControl() {
     if (StaticObject.Meatboy.touching(StaticObject.Wall[index])) {
       jump();
     }
-    
   }
-  /*if (StaticObject.Meatboy.touching(StaticObject.Wall[0])) {
-    jump();
-  }*/
 };
 
 
