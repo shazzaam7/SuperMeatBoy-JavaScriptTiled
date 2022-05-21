@@ -8,7 +8,6 @@
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
 
-
 class PlayableCharacter extends Sprite {
     constructor(x, y, layer) {
         super(x, y, 60, 60);
@@ -82,10 +81,6 @@ class PlayableCharacter extends Sprite {
         b.left <= a.right &&
         a.top <= b.bottom &&
         b.top <= a.bottom;
-  
-      // samo lijevo i desno ne radi
-      // let result = a.left <= b.right && b.left <= a.right;
-  
       return result;
     };
 };
@@ -107,7 +102,7 @@ class MeatBoy extends PlayableCharacter {
     };
 };
 
-class Item extends Sprite {
+class Goal extends Sprite {
   constructor(layer) {
     super(layer.x, layer.y, layer.width, layer.height);
     this.frame_sets = {
@@ -122,38 +117,51 @@ class Item extends Sprite {
     }
 
     this.layer = layer;
-  }
-}
-
-class Goal extends Item {
-  constructor(layer) {
-    super(layer);
     this.visible = true;
-  };
+  }
 
   updatePosition() {
 
   };
 };
 
-class Enemy extends Item {
+class Enemy extends Sprite {
   constructor(layer) {
-    super(layer);
-    this.visible = true;
-  };
+    super(layer.x, layer.y, layer.width, layer.height);
+    this.frame_sets = {
+      "down": [1],
+      "walk-down": [1],
+      "left": [1],
+      "walk-left": [1],
+      "right": [1],
+      "walk-right": [1],
+      "up": [1],
+      "walk-up": [1]
+    }
 
+    this.layer = layer;
+    this.visible = true;
+  }
   updatePosition() {
-    
-  };
+    super.updatePosition();
+  }
 }
 
-class Wall extends Item {
+class Wall extends Sprite {
   constructor(layer) {
-    super(layer);
+    super(layer.x, layer.y, layer.width, layer.height);
+    this.frame_sets = {
+      "down": [1],
+      "walk-down": [1],
+      "left": [1],
+      "walk-left": [1],
+      "right": [1],
+      "walk-right": [1],
+      "up": [1],
+      "walk-up": [1]
+    }
+
+    this.layer = layer;
     this.visible = true;
-  };
-
-  /*updatePosition() {
-
-  }*/
+  }
 }

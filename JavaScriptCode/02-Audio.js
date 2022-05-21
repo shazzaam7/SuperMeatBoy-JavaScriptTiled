@@ -11,7 +11,9 @@ class Audio {
 };
 
 function startLevelAudio() {
-    Audio.levelTheme.play();
+    if (Audio.levelTheme.paused == true) {
+        Audio.levelTheme.play();
+    };
 };
 
 function stopLevelAudio() {

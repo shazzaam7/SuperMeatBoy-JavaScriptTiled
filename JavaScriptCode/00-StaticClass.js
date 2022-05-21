@@ -6,7 +6,7 @@ class StaticObject {
     };
     
     static Meatboy;
-    static SpinningSaw;
+    static SpinningSaw = [];
     static Goal;
     static Wall = [];
     static Selected;

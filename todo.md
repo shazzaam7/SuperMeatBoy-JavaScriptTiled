@@ -10,7 +10,7 @@ TODO:
 - {x} Design my own Tileset
 - {} Spinning Saws (Implemented, they kill, but still aren't spinning or moving)
 - {} Start working on actual levels 
-- {} Boss (Either CHAD fighting for Dr. Fetus or Dr. Fetus)
+- {} Boss (Dr. Fetus)
 - {} Redesign interface
 
 TODO: (Extra Features)
