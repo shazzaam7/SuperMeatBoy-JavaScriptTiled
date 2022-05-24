@@ -44,7 +44,8 @@ function setup() {
 
 function next() {
   btnStop_click();
-  setupLevel3();
+  StaticObject.Selected = "level2";
+  setupLevel2();
   btnStart_click();
 }
 
@@ -89,11 +90,11 @@ function setupLevel2() {
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
   GAME.addSprite(StaticObject.Goal);
 
-  /*for (let index1 = 0; index1 < 3; index1++) {
+  for (let index1 = 0; index1 < 3; index1++) {
     let id = index1 + 1;
     StaticObject.SpinningSaw[index1] = new Enemy(GAME.getSpriteLayer("Saw" + id));
     GAME.addSprite(StaticObject.SpinningSaw[index1]);
-  }*/
+  }
 
   for (let index = 0; index < 5; index++) {
     let i = index + 1;
