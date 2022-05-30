@@ -313,8 +313,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":68,
+ "nextlayerid":17,
+ "nextobjectid":71,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

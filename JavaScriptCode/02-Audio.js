@@ -26,7 +26,3 @@ Audio.levelTheme = document.getElementById("levelTheme");
 Audio.jumpSound = document.getElementById("jump");
 Audio.deathSound = document.getElementById("death");
 Audio.levelTheme.volume = 0.4;
-
-//Event Listener
-btnStart.addEventListener("click", startLevelAudio);
-btnStop.addEventListener("click", stopLevelAudio);

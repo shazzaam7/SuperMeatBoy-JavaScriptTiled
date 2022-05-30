@@ -11,6 +11,7 @@
 /// <reference path="01-Characters.js"/>
 /// <reference path="02-Audio.js"/>
 /// <reference path="03-Settings.js"/>
+/// <reference path="05-Stopwatch.js"/>
 
 function update_main() {
   
@@ -21,9 +22,9 @@ function update_main() {
     case "level2":
       characterControl();
       break;
-    /*case "level3":
+    case "level3":
       characterControl();
-      break;*/
+      break;
     default:
       break;
   };
@@ -47,11 +48,13 @@ function characterControl() {
   };
 
   if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
-    btnNext.dispatchEvent(nextLevel);
+    btnStop_click();
+    btnSetupGame.click();
+    stopLevelAudio();
   };
 
-  for (let index1 = 0; index1 < StaticObject.SpinningSaw.length; index1++) {
-    if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[index1])) {
+  for (let i = 0; i < StaticObject.SpinningSaw.length; i++) {
+    if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[i])) {
       Audio.deathSound.play();
     switch (GAME.activeWorldMap.name) {
       case "level1":
@@ -59,14 +62,18 @@ function characterControl() {
         break;
       case "level2":
         StaticObject.Meatboy.start(12*60, 21*60);
+        break;
+      case "level3":
+        StaticObject.Meatboy.start(3*60,22*60);
+        break;
       default:
         break;
       };
     };
   };
 
-  for (let index2 = 0; index2 < StaticObject.Wall.length; index2++) {
-    if (StaticObject.Meatboy.touching(StaticObject.Wall[index2])) {
+  for (let i = 0; i < StaticObject.Wall.length; i++) {
+    if (StaticObject.Meatboy.touching(StaticObject.Wall[i])) {
       if (SENSING.up.active) {
         StaticObject.Meatboy.jumping = true;
       } else {
