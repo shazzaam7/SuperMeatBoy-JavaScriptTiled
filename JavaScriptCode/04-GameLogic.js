@@ -34,6 +34,8 @@ function update_main() {
 };
 
 function characterControl() {
+
+  cycleTimer();
   
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();
@@ -48,6 +50,8 @@ function characterControl() {
   };
 
   if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
+    Stopwatch.startTimer = false;
+    resetTimer();
     btnStop_click();
     btnSetupGame.click();
     stopLevelAudio();
@@ -55,6 +59,7 @@ function characterControl() {
 
   for (let i = 0; i < StaticObject.SpinningSaw.length; i++) {
     if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[i])) {
+      resetTimer();
       Audio.deathSound.play();
     switch (GAME.activeWorldMap.name) {
       case "level1":

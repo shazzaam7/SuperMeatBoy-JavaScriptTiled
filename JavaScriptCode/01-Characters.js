@@ -9,97 +9,97 @@
 //#endregion
 
 class PlayableCharacter extends Sprite {
-    constructor(x, y, layer) {
-        super(x, y, 60, 60);
+  constructor(x, y, layer) {
+    super(x, y, 60, 60);
 
-        this.frame_sets = {};
-        this.layer = layer;
-    };
-    moveRight() {
-        this.direction = 90;
-        this.velocity_x += 3.5;
-    };
-    
-    moveLeft() {
-        this.direction = 270;
-        this.velocity_x -= 3.5;
-    };
-    
-    moveUp() {
-        this.direction = 0;
-        this.velocity_y -= 2.5;
-    };
-    
-    moveDown() {
-        this.direction = 180;
-        this.velocity_y += 2.5;
-    };
-    
-    jump(h = 69) {
+    this.frame_sets = {};
+    this.layer = layer;
+  };
+  moveRight() {
+    this.direction = 90;
+    this.velocity_x += 3.5;
+  };
 
-      if (!this.jumping) {
-    
-        this.jumping = true;
-        this.velocity_y -= h;
-        Audio.jumpSound.play();
-      };
-    };
+  moveLeft() {
+    this.direction = 270;
+    this.velocity_x -= 3.5;
+  };
 
-    updatePosition(gravity, friction) {
-      super.updatePosition(gravity = 3.5, friction = 0.86);
-    };
+  moveUp() {
+    this.direction = 0;
+    this.velocity_y -= 2.5;
+  };
 
-    start(levelx,levely) {
-      this.x = levelx;
-      this.y = levely;
-    };
+  moveDown() {
+    this.direction = 180;
+    this.velocity_y += 2.5;
+  };
 
-    touching(sprite) {
-      if (sprite.visible == false) {
-        if (sprite instanceof Wall) {
-          return true;
-        } else {
-          return false;
-        }
+  jump(h = 69) {
+
+    if (!this.jumping) {
+
+      this.jumping = true;
+      this.velocity_y -= h;
+      Audio.jumpSound.play();
+    };
+  };
+
+  updatePosition(gravity, friction) {
+    super.updatePosition(gravity = 3.5, friction = 0.86);
+  };
+
+  start(levelx, levely) {
+    this.x = levelx;
+    this.y = levely;
+  };
+
+  touching(sprite) {
+    if (sprite.visible == false) {
+      if (sprite instanceof Wall) {
+        return true;
+      } else {
+        return false;
       }
-  
-      let a = {
-        left: this.x,
-        right: this.x + this.width,
-        top: this.y,
-        bottom: this.y + this.height
-      };
-  
-      let b = {
-        left: sprite.x,
-        right: sprite.x + sprite.width,
-        top: sprite.y,
-        bottom: sprite.y + sprite.height
-      };
-  
-      let result = a.left <= b.right &&
-        b.left <= a.right &&
-        a.top <= b.bottom &&
-        b.top <= a.bottom;
-      return result;
+    }
+
+    let a = {
+      left: this.x,
+      right: this.x + this.width,
+      top: this.y,
+      bottom: this.y + this.height
     };
+
+    let b = {
+      left: sprite.x,
+      right: sprite.x + sprite.width,
+      top: sprite.y,
+      bottom: sprite.y + sprite.height
+    };
+
+    let result = a.left <= b.right &&
+      b.left <= a.right &&
+      a.top <= b.bottom &&
+      b.top <= a.bottom;
+    return result;
+  };
 };
 
 class MeatBoy extends PlayableCharacter {
-    constructor(x,y,layer) {
-        super(x,y,layer);
-        this.frame_sets = {
-            "up": [6],
-            "walk-up": [6],
-            "right": [6],
-            "walk-right": [7,8,9,10],
-            "down": [6],
-            "walk-down": [6],
-            "left": [1],
-            "walk-left": [2,3,4]
-        };
-        this.visible = true;
+  constructor(x, y, layer) {
+    super(x, y, layer);
+    this.frame_sets = {
+      "up": [6],
+      "walk-up": [6],
+      "right": [6],
+      "walk-right": [7, 8, 9, 10],
+      "down": [6],
+      "walk-down": [6],
+      "left": [1],
+      "walk-left": [2, 3, 4]
     };
+    this.visible = true;
+  };
 };
 
 class Goal extends Sprite {
@@ -141,9 +141,46 @@ class Enemy extends Sprite {
 
     this.layer = layer;
     this.visible = true;
+    this.move = false;
+    this.limit = 0;
+    this._distance = 0;
   }
+  
+  get distance() {
+    return this._distance;
+  }
+
+  set distance(p) {
+    if (p >= this.limit) {
+      this._distance = this.limit;
+    } else {
+      this._distance = p;
+    }
+  }
+
   updatePosition() {
-    super.updatePosition();
+    if (this.move) {
+      switch (this.direction) {
+        case 0: //up
+          this.y -= 5;
+          this.distance += 5;
+          break;
+        case 90: //right
+          this.x += 5;
+          this.distance += 5;
+          break;
+        case 180: //down
+          this.y += 5;
+          this.distance += 5;
+          break;
+        case 270: //left
+          this.x += 5;
+          this.distance += 5;
+          break;
+        default:
+          break;
+      }
+    }
   }
 }
 

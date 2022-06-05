@@ -17,13 +17,26 @@
 let btnSetupGame = document.getElementById("btnSetupGame");
 btnSetupGame.addEventListener("click", setup);
 btnStart.addEventListener("click", startLevelAudio);
+btnStart.addEventListener("click", startTimer);
 btnStop.addEventListener("click", stopLevelAudio);
+btnStop.addEventListener("click", stopTimer);
 
+function startTimer() {
+  Stopwatch.startTimer = true;
+}
+
+function stopTimer() {
+  Stopwatch.startTimer = false;
+}
 function setup() {
 
   GAME.clearSprites();
-
+  StaticObject.SpinningSaw = [];
+  StaticObject.Wall = [];
+  
+  resetTimer();
   StaticObject.Selected = GAME.activeWorldMap.name;
+  
   GameSettings.output(StaticObject.Selected);
 
   switch (StaticObject.Selected) {
@@ -68,7 +81,6 @@ function setuplevel1() {
     StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
     GAME.addSprite(StaticObject.Wall[index]);
   }
-
 };
 
 function setupLevel2() {
