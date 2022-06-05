@@ -35,7 +35,7 @@ function update_main() {
 
 function characterControl() {
 
-  cycleTimer();
+  //cycleTimer();
   
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();
