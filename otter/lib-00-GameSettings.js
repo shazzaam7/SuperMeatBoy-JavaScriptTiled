@@ -24,7 +24,7 @@ class GameSettings {
     sel = document.createElement("select");
     sel.id = "selectMaps";
     let opt = document.createElement("option");
-    opt.text = "Odaberite mapu";
+    opt.text = "Select level";
     opt.value = "";
     sel.appendChild(opt);
     div.appendChild(sel);
@@ -173,6 +173,8 @@ function btnStop_click() {
     GameSettings.showElement(selMaps);
 
 }
+
+
 
 function showOutput_change(event) {
   if (this.checked)

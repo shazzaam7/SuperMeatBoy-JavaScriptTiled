@@ -9,10 +9,10 @@ TODO:
 - {x} Jumping from walls (Working although there's a bug)
 - {x} Design my own Tileset
 - {x} Stopwatch
+- {} Cleanup code
 - {} Spinning Saws (Implemented, they kill, but still aren't spinning or moving {Probably won't need to})
 - {} Start working on actual levels (3/4 levels done)
 - {} Boss (Dr. Fetus - In development hell because of lack of tilesets)
-- {} Redesign interface
 
 TODO: (Extra Features)
 - {} Bandage Girl Campaign
@@ -20,3 +20,4 @@ TODO: (Extra Features)
 - {} Debug mode
 - {} Weapons
 - {} Power ups
+- {} Redesign interface
