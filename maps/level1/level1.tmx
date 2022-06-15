@@ -4,13 +4,13 @@
   <export target="../../level1.js" format="js"/>
  </editorsettings>
  <tileset firstgid="1" name="smb" tilewidth="60" tileheight="60" tilecount="11" columns="11" objectalignment="topleft">
-  <image source="pics/smb.png" width="660" height="60"/>
+  <image source="../Tilesets/smb.png" width="660" height="60"/>
  </tileset>
  <tileset firstgid="12" name="Background" tilewidth="60" tileheight="60" tilecount="825" columns="33" objectalignment="topleft">
-  <image source="pics/bg_base.png" width="2000" height="1500"/>
+  <image source="../Tilesets/bg_base.png" width="2000" height="1500"/>
  </tileset>
  <tileset firstgid="837" name="Tileset" tilewidth="60" tileheight="60" tilecount="400" columns="20" objectalignment="topleft">
-  <image source="pics/Tilsetv1.png" width="1200" height="1200"/>
+  <image source="../Tilesets/Tilsetv1.png" width="1200" height="1200"/>
  </tileset>
  <layer id="3" name="Background" width="32" height="21">
   <data encoding="csv">

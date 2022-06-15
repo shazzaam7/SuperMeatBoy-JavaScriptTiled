@@ -1,3 +1,6 @@
+/**
+ * Static class for stopwatch
+ */
 class Stopwatch {
     constructor() {
         if (this instanceof Stopwatch) {
@@ -9,7 +12,9 @@ class Stopwatch {
     static startTimer = false;
 }
 
-
+/**
+ * Used to control timer of the stopwatch 
+ */
 function controlTimer(flag) {
     if (flag == true) {
         Stopwatch.startTimer = true;
@@ -18,6 +23,9 @@ function controlTimer(flag) {
     }
 }
 
+/**
+ * Used to count time, but because of the framework it causes performance issues
+ */
 function cycleTimer() {
     if (Stopwatch.startTimer == true) {
         Stopwatch.ms += 2;
@@ -30,6 +38,9 @@ function cycleTimer() {
     }
 }
 
+/**
+ * Used to reset the Stopwatch
+ */
 function resetTimer() {
     Stopwatch.ms = 00;
     Stopwatch.sec = 00;

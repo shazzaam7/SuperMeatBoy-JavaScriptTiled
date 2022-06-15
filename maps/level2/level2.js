@@ -362,7 +362,7 @@
         {
          "columns":33,
          "firstgid":1,
-         "image":"maps\/level2\/pics\/bg_base.png",
+         "image":"maps\/Tilesets\/bg_base.png",
          "imageheight":1500,
          "imagewidth":2000,
          "margin":0,
@@ -376,11 +376,12 @@
         {
          "columns":11,
          "firstgid":826,
-         "image":"maps\/level2\/pics\/smb.png",
+         "image":"maps\/Tilesets\/smb.png",
          "imageheight":60,
          "imagewidth":660,
          "margin":0,
          "name":"smb",
+         "objectalignment":"topleft",
          "spacing":0,
          "tilecount":11,
          "tileheight":60,
@@ -389,7 +390,7 @@
         {
          "columns":20,
          "firstgid":837,
-         "image":"maps\/level2\/pics\/Tilsetv1.png",
+         "image":"maps\/Tilesets\/Tilsetv1.png",
          "imageheight":1200,
          "imagewidth":1200,
          "margin":0,

@@ -12,10 +12,9 @@
 /// <reference path="05-Stopwatch.js"/>
 
 
-//events
+//event listeners
 
-let btnSetupGame = document.getElementById("btnSetupGame");
-btnSetupGame.addEventListener("click", setup);
+StaticObject.SetupGame.addEventListener("click", setup);
 btnStart.addEventListener("click", startLevelAudio);
 btnStart.addEventListener("click", startTimer);
 btnStop.addEventListener("click", stopLevelAudio);
@@ -28,6 +27,10 @@ function startTimer() {
 function stopTimer() {
   Stopwatch.startTimer = false;
 }
+
+/**
+ * Function to setup the levels of the game
+ */
 function setup() {
 
   GAME.clearSprites();
@@ -50,6 +53,12 @@ function setup() {
     
     case "level3":
       setupLevel3();
+      break;
+
+    case "level4":
+      setupLevel4();
+      break;
+
     default:
       break;
   };
@@ -57,7 +66,7 @@ function setup() {
   render_main();
 };
 
-/* LEVELS */
+//Setups for levels
 
 function setuplevel1() {
 
@@ -131,3 +140,26 @@ function setupLevel3() {
     GAME.addSprite(StaticObject.Wall[index]);
   }
 };
+
+function setupLevel4() {
+  GAME.clearSprites();
+  GAME.activeWorldMap.setCollisions("Floor");
+  
+  StaticObject.Meatboy = new MeatBoy(2*60, 22*60, GAME.getSpriteLayer("Meat"));
+  GAME.addSprite(StaticObject.Meatboy);
+
+  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+  GAME.addSprite(StaticObject.Goal);
+
+  for (let index = 0; index < 2; index++) {
+    let i = index + 1;
+    StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
+    GAME.addSprite(StaticObject.Wall[index]);
+  }
+
+  for (let index = 0; index < 3; index++) {
+    let id = index + 1;
+    StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
+    GAME.addSprite(StaticObject.SpinningSaw[index]);
+  }
+}

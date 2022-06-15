@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="user-scalable=no,width=device-width">
   <link href="otter.css" rel="stylesheet" type="text/css">
-  <link type="image/png" sizes="16x16" rel="icon" href="otter/ottericon2.png">
+  <link type="image/png" sizes="512x512" rel="icon" href="icon.png">
   <title>Super Meat Boy</title>
 
   <style>
@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
   <div id="divIzbornik">
     <button id="btnMaps"><span class="emoji">&#127757;</span> Maps</button>
 
@@ -37,10 +36,13 @@
   <audio id="death">
     <source src="audio/SawDeath0.ogg">
   </audio>
+  <audio id="bossTheme">
+    <source src="audio/Escape.ogg">
+  </audio>
   <!-- Info -->
   <div class="infowrapper">
     <p class="info"> <input type="checkbox" name="showOutput" id="showOutput"></p>
-    <textarea id="taInfo" class="info" rows="4" disabled></textarea>
+    <textarea id="taInfo" class="info" rows="4" disabled hidden></textarea>
   </div>
 
   <!-- Settings -->
@@ -52,6 +54,7 @@
   <script src="maps/level1/level1.js"></script>
   <script src="maps/level2/level2.js"></script>
   <script src="maps/level3/level3.js"></script>
+  <script src="maps/level4/level4.js"></script>
   <!-- OTTER -->
 
   <script src="otter/lib-01-tiled.js"></script>

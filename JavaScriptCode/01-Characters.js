@@ -8,6 +8,10 @@
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
 
+
+/**
+ * Class used for all playable characters. Has pretty much everything that is needed main characters apart from their animations
+ */
 class PlayableCharacter extends Sprite {
   constructor(x, y, layer) {
     super(x, y, 60, 60);
@@ -84,7 +88,9 @@ class PlayableCharacter extends Sprite {
     return result;
   };
 };
-
+/**
+ * Class for the main character MeatBoy
+ */
 class MeatBoy extends PlayableCharacter {
   constructor(x, y, layer) {
     super(x, y, layer);
@@ -102,6 +108,9 @@ class MeatBoy extends PlayableCharacter {
   };
 };
 
+/**
+ * Class for goal. It's similar to Wall class.
+ */
 class Goal extends Sprite {
   constructor(layer) {
     super(layer.x, layer.y, layer.width, layer.height);
@@ -124,7 +133,9 @@ class Goal extends Sprite {
 
   };
 };
-
+/**
+ * Class for enemies
+ */
 class Enemy extends Sprite {
   constructor(layer) {
     super(layer.x, layer.y, layer.width, layer.height);
@@ -142,6 +153,7 @@ class Enemy extends Sprite {
     this.layer = layer;
     this.visible = true;
     this.move = false;
+    this.direction = 90;
     this.limit = 0;
     this._distance = 0;
   }
@@ -157,7 +169,9 @@ class Enemy extends Sprite {
       this._distance = p;
     }
   }
-
+  /**
+   * Might be used to make enemy like Spinning Saws move around the map
+   */
   updatePosition() {
     if (this.move) {
       switch (this.direction) {
@@ -181,9 +195,12 @@ class Enemy extends Sprite {
           break;
       }
     }
-  }
-}
+  } 
 
+}
+/**
+ * Class specifically designed for invisible walls used for jumping while touching real visible walls
+ */
 class Wall extends Sprite {
   constructor(layer) {
     super(layer.x, layer.y, layer.width, layer.height);

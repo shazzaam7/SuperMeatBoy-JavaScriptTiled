@@ -3,12 +3,12 @@
 /// <reference path="lib-06-main.js"/>
 
 /**
- * Klasa: GameSettings
- * - statička klasa za opće postavke i funkcije.
+ * Class: GameSettings
+ * - Static Class for settings and functions.
  */
 class GameSettings {
   /**
-   * Promjena mape.
+   * Change
    */
   static ChangeMap() {
 
@@ -130,7 +130,7 @@ class GameSettings {
 //!----------- btnStart ----------------
 
 /**
- * Event hanlder za btnStart.
+ * Event hanlder za btnStart.x
  */
 function btnStart_click() {
 

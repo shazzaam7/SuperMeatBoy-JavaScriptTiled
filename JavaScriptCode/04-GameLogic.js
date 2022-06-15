@@ -14,7 +14,6 @@
 /// <reference path="05-Stopwatch.js"/>
 
 function update_main() {
-  
   switch (GAME.activeWorldMap.name) {
     case "level1":
       characterControl();
@@ -25,18 +24,26 @@ function update_main() {
     case "level3":
       characterControl();
       break;
+    case "level4":
+      characterControl();
+      sawMovement();
+      break;
     default:
       break;
   };
-  
+
   GAME.update();
-  
+
 };
 
+/**
+ * Universal function that holds everything about character movement and interactions with other objects
+ */
 function characterControl() {
 
+  //Disabled until performance issues are fixed which are caused by the frameworks own internal timer. Might need to implement it into the framework itself
   //cycleTimer();
-  
+
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();
   };
@@ -53,7 +60,7 @@ function characterControl() {
     Stopwatch.startTimer = false;
     resetTimer();
     btnStop_click();
-    btnSetupGame.click();
+    StaticObject.SetupGame.click();
     stopLevelAudio();
   };
 
@@ -61,18 +68,20 @@ function characterControl() {
     if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[i])) {
       resetTimer();
       Audio.deathSound.play();
-    switch (GAME.activeWorldMap.name) {
-      case "level1":
-        StaticObject.Meatboy.start(4*60, 18*60);
-        break;
-      case "level2":
-        StaticObject.Meatboy.start(12*60, 21*60);
-        break;
-      case "level3":
-        StaticObject.Meatboy.start(3*60,22*60);
-        break;
-      default:
-        break;
+      switch (GAME.activeWorldMap.name) {
+        case "level1":
+          StaticObject.Meatboy.start(4 * 60, 18 * 60);
+          break;
+        case "level2":
+          StaticObject.Meatboy.start(12 * 60, 21 * 60);
+          break;
+        case "level3":
+          StaticObject.Meatboy.start(3 * 60, 22 * 60);
+          break;
+        case "level4":
+          StaticObject.Meatboy.start(2 * 60, 22 * 60);
+        default:
+          break;
       };
     };
   };
@@ -87,3 +96,19 @@ function characterControl() {
     };
   };
 };
+
+function sawMovement() {
+  if (SENSING.keyD.active) {
+    StaticObject.SpinningSaw[2].move = true;
+    StaticObject.SpinningSaw[2].limit = 300;
+    if (StaticObject.SpinningSaw[2].distance == StaticObject.SpinningSaw[2].limit) {
+      if (StaticObject.SpinningSaw[2].direction == 90) {
+        StaticObject.SpinningSaw[2].direction == 180;
+        StaticObject.SpinningSaw[2].distance = 0;
+      } else if (StaticObject.SpinningSaw[2].direction == 180) {
+        StaticObject.SpinningSaw[2].direction == 90;
+        StaticObject.SpinningSaw[2].distance = 0;
+      }
+    }
+  }
+}
