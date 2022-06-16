@@ -16,9 +16,7 @@
 
 StaticObject.SetupGame.addEventListener("click", setup);
 btnStart.addEventListener("click", startLevelAudio);
-btnStart.addEventListener("click", startTimer);
 btnStop.addEventListener("click", stopLevelAudio);
-btnStop.addEventListener("click", stopTimer);
 
 function startTimer() {
   Stopwatch.startTimer = true;
@@ -36,21 +34,21 @@ function setup() {
   GAME.clearSprites();
   StaticObject.SpinningSaw = [];
   StaticObject.Wall = [];
-  
+
   resetTimer();
   StaticObject.Selected = GAME.activeWorldMap.name;
-  
+
   GameSettings.output(StaticObject.Selected);
 
   switch (StaticObject.Selected) {
     case "level1":
       setuplevel1();
       break;
-    
+
     case "level2":
       setupLevel2();
       break;
-    
+
     case "level3":
       setupLevel3();
       break;
@@ -72,8 +70,8 @@ function setuplevel1() {
 
   GAME.clearSprites();
   GAME.activeWorldMap.setCollisions("Floor");
-  
-  StaticObject.Meatboy = new MeatBoy(4*60, 18*60, GAME.getSpriteLayer("Meat"));
+
+  StaticObject.Meatboy = new MeatBoy(4 * 60, 18 * 60, GAME.getSpriteLayer("Meat"));
   GAME.addSprite(StaticObject.Meatboy);
 
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
@@ -97,8 +95,8 @@ function setupLevel2() {
   GAME.clearSprites();
 
   GAME.activeWorldMap.setCollisions("Floor");
-  
-  StaticObject.Meatboy = new MeatBoy(12*60, 21*60, GAME.getSpriteLayer("Meat"));
+
+  StaticObject.Meatboy = new MeatBoy(12 * 60, 21 * 60, GAME.getSpriteLayer("Meat"));
   GAME.addSprite(StaticObject.Meatboy);
 
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
@@ -121,8 +119,8 @@ function setupLevel3() {
 
   GAME.clearSprites();
   GAME.activeWorldMap.setCollisions("Floor");
-  
-  StaticObject.Meatboy = new MeatBoy(3*60, 22*60, GAME.getSpriteLayer("Meat"));
+
+  StaticObject.Meatboy = new MeatBoy(3 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
   GAME.addSprite(StaticObject.Meatboy);
 
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
@@ -144,20 +142,20 @@ function setupLevel3() {
 function setupLevel4() {
   GAME.clearSprites();
   GAME.activeWorldMap.setCollisions("Floor");
-  
-  StaticObject.Meatboy = new MeatBoy(2*60, 22*60, GAME.getSpriteLayer("Meat"));
+
+  StaticObject.Meatboy = new MeatBoy(2 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
   GAME.addSprite(StaticObject.Meatboy);
 
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
   GAME.addSprite(StaticObject.Goal);
 
-  for (let index = 0; index < 2; index++) {
+  for (let index = 0; index < 6; index++) {
     let i = index + 1;
     StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
     GAME.addSprite(StaticObject.Wall[index]);
   }
 
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 4; index++) {
     let id = index + 1;
     StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
     GAME.addSprite(StaticObject.SpinningSaw[index]);

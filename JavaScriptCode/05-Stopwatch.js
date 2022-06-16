@@ -34,7 +34,7 @@ function cycleTimer() {
             Stopwatch.ms = 0;
         }
 
-        GameSettings.output(Stopwatch.sec + ":" + Stopwatch.ms, true);
+        GameSettings.output("Stopwatch: " + Stopwatch.sec + ":" + Stopwatch.ms, true);
     }
 }
 

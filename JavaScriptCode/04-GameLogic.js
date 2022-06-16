@@ -41,8 +41,7 @@ function update_main() {
  */
 function characterControl() {
 
-  //Disabled until performance issues are fixed which are caused by the frameworks own internal timer. Might need to implement it into the framework itself
-  //cycleTimer();
+  cycleTimer(); //Might disable because performance can tank sometimes
 
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();

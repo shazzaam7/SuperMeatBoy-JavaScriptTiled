@@ -8,6 +8,8 @@ class StaticObject {
             throw("This is static class!");
         };
     };
+
+    static StopwatchButton = document.getElementById("btnStopwatch");
     static SetupGame = document.getElementById("btnSetupGame");
     static Meatboy;
     static SpinningSaw = [];

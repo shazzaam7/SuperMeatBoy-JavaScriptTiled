@@ -57,6 +57,16 @@ function resize_main(event) {
 function render_main() {
 
   if (GAME.activeWorldMap == null) return;
+  
+  if (StaticObject.StopwatchButton.checked) {
+    btnStart.addEventListener("click", startTimer);
+    btnStop.addEventListener("click", stopTimer);
+    document.getElementById("taInfo").removeAttribute("hidden");
+  } else {
+    btnStart.removeEventListener("click", startTimer);
+    btnStop.removeEventListener("click", stopTimer);
+    document.getElementById("taInfo").setAttribute("hidden", true);
+  }
 
   DISPLAY.drawMap(GAME.activeWorldMap);
 

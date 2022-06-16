@@ -10,23 +10,36 @@
   <title>Super Meat Boy</title>
 
   <style>
-    
+
   </style>
 
 </head>
 
 <body>
+  <!-- Menu -->
   <div id="divIzbornik">
     <button id="btnMaps"><span class="emoji">&#127757;</span> Maps</button>
 
-    <button class="orange" id="btnSetupGame"><span class="emoji">&#128736;</span> Setup game #</button>
+    <button class="white" id="btnSetupGame"><span class="emoji">&#128736;</span> Setup game #</button>
 
-    <button class="green" id="btnStart"><span class="emoji">&#127937;</span> START</button>
-    <button class="red" id="btnStop"><span class="emoji">&#10060;</span> STOP</button>
-
+    <button class="white" id="btnStart"><span class="emoji">&#127937;</span> START</button>
+    <button class="white" id="btnStop"><span class="emoji">&#10060;</span> STOP</button>
+    <label class="switch">
+      <input type="checkbox" id="btnStopwatch" name="btnStopwatch">
+      <span class="slider"></span>
+    </label>
   </div>
 
+  <!-- Game -->
   <canvas id="game"></canvas>
+
+  <!-- Info -->
+  <div class="infowrapper">
+    <p class="info"> <input type="checkbox" name="showOutput" id="showOutput"></p>
+    <textarea id="taInfo" class="info" rows="4" disabled hidden></textarea>
+  </div>
+
+  <!-- Audio -->
   <audio id="levelTheme" loop>
     <source src="audio/ForestFunk.ogg">
   </audio>
@@ -39,11 +52,6 @@
   <audio id="bossTheme">
     <source src="audio/Escape.ogg">
   </audio>
-  <!-- Info -->
-  <div class="infowrapper">
-    <p class="info"> <input type="checkbox" name="showOutput" id="showOutput"></p>
-    <textarea id="taInfo" class="info" rows="4" disabled hidden></textarea>
-  </div>
 
   <!-- Settings -->
 
@@ -55,6 +63,7 @@
   <script src="maps/level2/level2.js"></script>
   <script src="maps/level3/level3.js"></script>
   <script src="maps/level4/level4.js"></script>
+
   <!-- OTTER -->
 
   <script src="otter/lib-01-tiled.js"></script>
@@ -71,6 +80,7 @@
   <script src="JavaScriptCode/03-Settings.js"></script>
   <script src="JavaScriptCode/04-GameLogic.js"></script>
   <script src="JavaScriptCode/05-Stopwatch.js"></script>
+
 </body>
 
 </html>

@@ -8,7 +8,6 @@
 /// <reference path="../otter/lib-06-main.js"/>
 //#endregion
 
-
 /**
  * Class used for all playable characters. Has pretty much everything that is needed main characters apart from their animations
  */
@@ -88,6 +87,7 @@ class PlayableCharacter extends Sprite {
     return result;
   };
 };
+
 /**
  * Class for the main character MeatBoy
  */
@@ -133,6 +133,7 @@ class Goal extends Sprite {
 
   };
 };
+
 /**
  * Class for enemies
  */
@@ -198,6 +199,7 @@ class Enemy extends Sprite {
   } 
 
 }
+
 /**
  * Class specifically designed for invisible walls used for jumping while touching real visible walls
  */
@@ -218,4 +220,8 @@ class Wall extends Sprite {
     this.layer = layer;
     this.visible = true;
   }
+
+  updatePosition() {
+
+  };
 }
