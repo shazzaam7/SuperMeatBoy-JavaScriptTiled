@@ -17,7 +17,21 @@ class PlayableCharacter extends Sprite {
 
     this.frame_sets = {};
     this.layer = layer;
+    this._deathcounter = 0;
   };
+
+  get deathcounter() {
+    return this._deathcounter;
+  }
+
+  set deathcounter(dc) {
+    if (dc < 0) {
+      this._deathcounter = 0;
+    } else {
+      this._deathcounter = dc;
+    }
+  }
+
   moveRight() {
     this.direction = 90;
     this.velocity_x += 3.5;
@@ -105,6 +119,7 @@ class MeatBoy extends PlayableCharacter {
       "walk-left": [2, 3, 4]
     };
     this.visible = true;
+
   };
 };
 
@@ -153,13 +168,15 @@ class Enemy extends Sprite {
 
     this.layer = layer;
     this.visible = true;
-    this.move = false;
+    
+    //Used for moving
+    /*this.move = false;
     this.direction = 90;
     this.limit = 0;
-    this._distance = 0;
+    this._distance = 0;*/
   }
-  
-  get distance() {
+
+  /*get distance() {
     return this._distance;
   }
 
@@ -169,11 +186,11 @@ class Enemy extends Sprite {
     } else {
       this._distance = p;
     }
-  }
+  }*/ //Property/private
   /**
    * Might be used to make enemy like Spinning Saws move around the map
    */
-  updatePosition() {
+  /*updatePosition() {
     if (this.move) {
       switch (this.direction) {
         case 0: //up
@@ -196,7 +213,10 @@ class Enemy extends Sprite {
           break;
       }
     }
-  } 
+  }*/
+  updatePosition() {
+
+  }
 
 }
 

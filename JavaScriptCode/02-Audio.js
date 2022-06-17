@@ -13,6 +13,7 @@ class Audio {
     static jumpSound = document.getElementById("jump");
     static deathSound = document.getElementById("death");
     static bossTheme = document.getElementById("bossTheme");
+    static RatingDeath = document.getElementById("RatingDeath");
 };
 
 /**

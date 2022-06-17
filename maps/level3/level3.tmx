@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="60" tileheight="60" infinite="0" nextlayerid="9" nextobjectid="12">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="60" tileheight="60" infinite="0" nextlayerid="9" nextobjectid="14">
  <editorsettings>
   <export target="../../level3.js" format="js"/>
  </editorsettings>
@@ -81,8 +81,8 @@
 0,0,0,0,0,0,0,0,1049,1079,1079,1079,1079,1079,1079,1079,1079,1079,1079,0,0,0,0,0,
 0,0,0,0,0,0,0,1053,1079,1079,1079,1080,1079,1079,1079,1080,1079,1079,1079,0,0,0,0,0,
 0,0,0,0,0,0,0,0,1079,1079,1079,1079,1079,1079,1080,1079,1079,1079,0,0,1079,1079,1079,0,
-0,0,0,0,0,0,0,0,1069,1079,1079,1079,1079,0,0,0,0,0,0,1079,1079,1080,1079,0,
-0,0,0,0,0,0,0,0,0,0,1079,1079,1079,1079,1079,1079,1079,1079,1070,0,1079,1079,1079,0,
+0,0,0,0,0,0,0,0,1069,1079,1079,1079,1079,0,0,0,0,0,0,1079,1079,1080,1079,852,
+0,0,0,0,0,0,0,0,0,0,1079,1079,1079,1079,1079,1079,1079,1079,1070,0,1079,1079,1079,852,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1069,1079,1079,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1079,1079,0,
 0,0,0,0,0,0,0,0,0,0,0,1079,1079,1079,1070,0,0,0,0,0,1049,1079,1079,0,
@@ -147,6 +147,8 @@
   <object id="6" name="Saw1" gid="1087" x="390" y="1000" width="60" height="60"/>
   <object id="7" name="Saw2" gid="1087" x="570" y="750" width="60" height="60"/>
   <object id="8" name="Saw3" gid="1087" x="690" y="630" width="60" height="60"/>
+  <object id="12" name="Saw4" gid="1087" x="1350" y="990" width="60" height="60"/>
+  <object id="13" name="Saw5" gid="1087" x="780" y="1230" width="60" height="60"/>
  </objectgroup>
  <layer id="2" name="Meat" width="24" height="24" visible="0">
   <properties>

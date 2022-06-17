@@ -34,7 +34,6 @@ function setup() {
   GAME.clearSprites();
   StaticObject.SpinningSaw = [];
   StaticObject.Wall = [];
-
   resetTimer();
   StaticObject.Selected = GAME.activeWorldMap.name;
 
@@ -61,6 +60,10 @@ function setup() {
       break;
   };
 
+  if (StaticObject.Meatboy.deathcounter != 0) {
+    StaticObject.Meatboy.deathcounter = 0;
+  }
+  
   render_main();
 };
 
@@ -126,7 +129,7 @@ function setupLevel3() {
   StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
   GAME.addSprite(StaticObject.Goal);
 
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 5; index++) {
     let id = index + 1;
     StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
     GAME.addSprite(StaticObject.SpinningSaw[index]);
@@ -155,7 +158,7 @@ function setupLevel4() {
     GAME.addSprite(StaticObject.Wall[index]);
   }
 
-  for (let index = 0; index < 4; index++) {
+  for (let index = 0; index < 9; index++) {
     let id = index + 1;
     StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
     GAME.addSprite(StaticObject.SpinningSaw[index]);

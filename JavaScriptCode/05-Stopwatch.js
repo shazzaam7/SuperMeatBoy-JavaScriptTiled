@@ -45,3 +45,154 @@ function resetTimer() {
     Stopwatch.ms = 00;
     Stopwatch.sec = 00;
 }
+
+/**
+ * Used to grade your time
+ */
+function score() {
+    if (Stopwatch.sec != 00 && Stopwatch.ms != 00) {
+        switch (StaticObject.Selected) {
+            case "level1":
+                switch (Stopwatch.sec) {
+                    case 1:
+                        if (Stopwatch.ms <= 50) {
+                            GameSettings.output("Platinum Medal! GG");
+                        } else {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        }
+                        break;
+                    case 2:
+                        GameSettings.output("Gold Medal! Not bad :)");
+                        break;
+                    case 3:
+                        if (Stopwatch.ms <= 50) {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        } else {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        }
+                        break;
+                    case 4:
+                        GameSettings.output("Silver Medal! You can do better! :|");
+                        break;
+                    case 5:
+                        if (Stopwatch.ms <= 50) {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        } else {
+                            GameSettings.output("Bronze Medal :(");
+                        }
+                        break;
+                    default:
+                        GameSettings.output("Bronze Medal :(");
+                        break;
+                }
+                break;
+            case "level2":
+                switch (Stopwatch.sec) {
+                    case 1: case 2: case 3: case 4:
+                        GameSettings.output("Platinum Medal! GG");
+                        break;
+                    case 5:
+                        if (Stopwatch.ms <= 20) {
+                            GameSettings.output("Platinum Medal! GG");
+                        } else {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        }
+                        break;
+                    case 6:
+                        if (Stopwatch.ms <= 50) {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        } else {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        }
+                        break;
+                    case 7:
+                        GameSettings.output("Silver Medal! You can do better! :|");
+                        break;
+                    case 8:
+                        if (Stopwatch.ms <= 50) {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        } else {
+                            GameSettings.output("Bronze Medal :(");
+                        }
+                        break;
+                    default:
+                        GameSettings.output("Bronze Medal :(");
+                        break;
+                }
+                break;
+            case "level3":
+                switch (Stopwatch.sec) {
+                    case 1:
+                        GameSettings.output("Platinum Medal! GG");
+                        break;
+                    case 2:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Platinum Medal! GG");
+                        } else {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        }
+                        break;
+                    case 3:
+                        GameSettings.output("Gold Medal! Not bad :)");
+                        break;
+                    case 4:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        } else {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        }
+                        break;
+                    case 5:
+                        GameSettings.output("Silver Medal! You can do better! :|");
+                        break;
+                    case 6:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        } else {
+                            GameSettings.output("Bronze Medal :(");
+                        }
+                        break;
+                    default:
+                        GameSettings.output("Bronze Medal :(");
+                        break;
+                }
+                break;
+            case "level4":
+                switch (Stopwatch.sec) {
+                    case 1: case 2: case 3: case 4:
+                        GameSettings.output("Platinum Medal! GG");
+                        break;
+                    case 5:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Platinum Medal! GG");
+                        } else {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        }
+                        break;
+                    case 6:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Gold Medal! Not bad :)");
+                        } else {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        }
+                        break;
+                    case 7:
+                        GameSettings.output("Silver Medal! You can do better! :|");
+                        break;
+                    case 8:
+                        if (Stopwatch.ms <= 30) {
+                            GameSettings.output("Silver Medal! You can do better! :|");
+                        } else {
+                            GameSettings.output("Bronze Medal :(");
+                        }
+                        break;
+                    default:
+                        GameSettings.output("Bronze Medal :(");
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}

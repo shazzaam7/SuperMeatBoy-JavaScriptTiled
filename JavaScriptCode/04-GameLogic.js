@@ -26,7 +26,6 @@ function update_main() {
       break;
     case "level4":
       characterControl();
-      sawMovement();
       break;
     default:
       break;
@@ -57,6 +56,9 @@ function characterControl() {
 
   if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
     Stopwatch.startTimer = false;
+    deathCounterRating();
+    StaticObject.Meatboy.deathcounter = 0;
+    score();
     resetTimer();
     btnStop_click();
     StaticObject.SetupGame.click();
@@ -65,6 +67,7 @@ function characterControl() {
 
   for (let i = 0; i < StaticObject.SpinningSaw.length; i++) {
     if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[i])) {
+      StaticObject.Meatboy.deathcounter++;
       resetTimer();
       Audio.deathSound.play();
       switch (GAME.activeWorldMap.name) {
@@ -96,6 +99,9 @@ function characterControl() {
   };
 };
 
+/**
+ * Function to make Spinning Saw's move. Needs to be adjusted per level
+ */
 function sawMovement() {
   if (SENSING.keyD.active) {
     StaticObject.SpinningSaw[2].move = true;
@@ -109,5 +115,23 @@ function sawMovement() {
         StaticObject.SpinningSaw[2].distance = 0;
       }
     }
+  }
+}
+
+function deathCounterRating() {
+  switch (StaticObject.Meatboy.deathcounter) {
+    case 0:
+      GameSettings.output("Deaths: " + StaticObject.Meatboy.deathcounter + " (You are a beast! GG)");
+      break;
+    case 1: case 2: case 3:
+      GameSettings.output("Deaths: " + StaticObject.Meatboy.deathcounter + " (Okay, not bad at all, but there's still room for improvement!)");
+      break;
+    case 4: case 5: case 6:
+      GameSettings.output("Deaths: " + StaticObject.Meatboy.deathcounter + " (You can do better, FOCUS!)");
+      break;
+    default:
+      Audio.RatingDeath.play();
+      GameSettings.output("Deaths: " + StaticObject.Meatboy.deathcounter + " (I'll leave Gordon Ramsay to tell you. ;( ))");
+      break;
   }
 }
