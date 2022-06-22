@@ -1,4 +1,3 @@
-
 /**
  * Static class used globally to add sprites into the game without new variables everytime it's needed
  */

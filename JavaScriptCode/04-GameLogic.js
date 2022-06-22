@@ -32,7 +32,6 @@ function update_main() {
   };
 
   GAME.update();
-
 };
 
 /**
@@ -98,25 +97,6 @@ function characterControl() {
     };
   };
 };
-
-/**
- * Function to make Spinning Saw's move. Needs to be adjusted per level
- */
-function sawMovement() {
-  if (SENSING.keyD.active) {
-    StaticObject.SpinningSaw[2].move = true;
-    StaticObject.SpinningSaw[2].limit = 300;
-    if (StaticObject.SpinningSaw[2].distance == StaticObject.SpinningSaw[2].limit) {
-      if (StaticObject.SpinningSaw[2].direction == 90) {
-        StaticObject.SpinningSaw[2].direction == 180;
-        StaticObject.SpinningSaw[2].distance = 0;
-      } else if (StaticObject.SpinningSaw[2].direction == 180) {
-        StaticObject.SpinningSaw[2].direction == 90;
-        StaticObject.SpinningSaw[2].distance = 0;
-      }
-    }
-  }
-}
 
 function deathCounterRating() {
   switch (StaticObject.Meatboy.deathcounter) {

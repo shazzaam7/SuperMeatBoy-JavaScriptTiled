@@ -121,37 +121,3 @@ function setupEnv_main() {
   canvasGame.addEventListener("mouseup", SENSING.mouseUp_eventHandler);
 
 } //// setupEnv
-
-/**
- * Promjena stanja likova - interakcije
- */
-function update_main() {
-
-  // interakcije u igri
-
-  if (GAME.activeWorldMap.sprites.length == 0) {
-    throw "Nema spriteova!";
-  }
-
-  if (SENSING.right.active) {
-    GAME.activeWorldMap.sprites[0].moveRight();
-  }
-  if (SENSING.up.active) {
-    //GAME.activeWorldMap.sprites[0].moveUp();
-    GAME.activeWorldMap.sprites[0].jump(50);
-    console.log(GAME.activeWorldMap.sprites[0].jumping);
-  }
-  if (SENSING.left.active) {
-    GAME.activeWorldMap.sprites[0].moveLeft();
-  }
-  if (SENSING.down.active) {
-    GAME.activeWorldMap.sprites[0].moveDown();
-  }
-
-  if (SENSING.stop.active) {
-    ENGINE.stop();
-  }
-
-  GAME.update();
-
-};

@@ -174,13 +174,6 @@ function btnStop_click() {
 
 }
 
-
-
 function showOutput_change(event) {
-  if (this.checked)
-    document.getElementById("taInfo").removeAttribute("hidden");
-  else
-    document.getElementById("taInfo").setAttribute("hidden", true);
-
   resize_main();
 }

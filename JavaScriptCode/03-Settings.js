@@ -13,6 +13,12 @@
 
 
 //event listeners
+window.addEventListener("keydown",
+  function (e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+      e.preventDefault();
+    }
+  }, false);
 
 StaticObject.SetupGame.addEventListener("click", setup);
 btnStart.addEventListener("click", startLevelAudio);
@@ -63,7 +69,7 @@ function setup() {
   if (StaticObject.Meatboy.deathcounter != 0) {
     StaticObject.Meatboy.deathcounter = 0;
   }
-  
+
   render_main();
 };
 
