@@ -68,7 +68,13 @@ function characterControl() {
     if (StaticObject.Meatboy.touching(StaticObject.SpinningSaw[i])) {
       StaticObject.Meatboy.deathcounter++;
       resetTimer();
-      Audio.deathSound.play();
+      if (Audio.deathSound.currentTime > 0) {
+        Audio.deathSound.pause();
+        Audio.deathSound.currentTime = 0;
+        Audio.deathSound.play();
+      } else {
+        Audio.deathSound.play();
+      }
       switch (GAME.activeWorldMap.name) {
         case "level1":
           StaticObject.Meatboy.start(4 * 60, 18 * 60);

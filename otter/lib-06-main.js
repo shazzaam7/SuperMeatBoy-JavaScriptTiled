@@ -18,8 +18,6 @@ var GAME = null;
 var ENGINE = null;
 
 //! sučelje
-const btnStart = document.getElementById("btnStart");
-const btnStop = document.getElementById("btnStop");
 const btnMaps = document.getElementById("btnMaps");
 const canvasGame = document.getElementById("game");
 
@@ -59,12 +57,12 @@ function render_main() {
   if (GAME.activeWorldMap == null) return;
   
   if (StaticObject.StopwatchButton.checked) {
-    btnStart.addEventListener("click", startTimer);
-    btnStop.addEventListener("click", stopTimer);
+    StaticObject.StartGame.addEventListener("click", startTimer);
+    StaticObject.StopGame.addEventListener("click", stopTimer);
     document.getElementById("taInfo").removeAttribute("hidden");
   } else {
-    btnStart.removeEventListener("click", startTimer);
-    btnStop.removeEventListener("click", stopTimer);
+    StaticObject.StartGame.removeEventListener("click", startTimer);
+    StaticObject.StopGame.removeEventListener("click", stopTimer);
     document.getElementById("taInfo").setAttribute("hidden", true);
   }
 
@@ -111,10 +109,9 @@ function setupEnv_main() {
   window.addEventListener("keyup", SENSING.keyDownUp_eventHandler);
   window.addEventListener("resize", resize_main);
 
-  btnStart.addEventListener("click", btnStart_click);
-  btnStop.addEventListener("click", btnStop_click);
+  StaticObject.StartGame.addEventListener("click", btnStart_click);
+  StaticObject.StopGame.addEventListener("click", btnStop_click);
   btnMaps.addEventListener("click", GameSettings.ChangeMap);
-  document.getElementById("showOutput").addEventListener("change", showOutput_change);
 
   // mouse
   canvasGame.addEventListener("mousedown", SENSING.mouseDown_eventHandler);

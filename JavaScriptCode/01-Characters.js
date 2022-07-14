@@ -13,7 +13,7 @@
  */
 class PlayableCharacter extends Sprite {
   constructor(x, y, layer) {
-    super(x, y, 60, 60);
+    super(x, y, 60 - 3, 60 - 3);
 
     this.frame_sets = {};
     this.layer = layer;
@@ -58,7 +58,13 @@ class PlayableCharacter extends Sprite {
 
       this.jumping = true;
       this.velocity_y -= h;
-      Audio.jumpSound.play();
+      if (Audio.jumpSound.currentTime > 0) {
+        Audio.jumpSound.pause();
+        Audio.jumpSound.currentTime = 0;
+        Audio.jumpSound.play();
+      } else {
+        Audio.jumpSound.play();
+      }
     };
   };
 

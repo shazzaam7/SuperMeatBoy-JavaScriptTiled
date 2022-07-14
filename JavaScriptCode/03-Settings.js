@@ -18,11 +18,11 @@ window.addEventListener("keydown",
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
       e.preventDefault();
     }
-  }, false);
+  });
 
 StaticObject.SetupGame.addEventListener("click", setup);
-btnStart.addEventListener("click", startLevelAudio);
-btnStop.addEventListener("click", stopLevelAudio);
+StaticObject.StartGame.addEventListener("click", startLevelAudio);
+StaticObject.StopGame.addEventListener("click", stopLevelAudio);
 
 function startTimer() {
   Stopwatch.startTimer = true;

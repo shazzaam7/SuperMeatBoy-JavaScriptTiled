@@ -136,7 +136,7 @@ function btnStart_click() {
 
   if (GAME.activeWorldMap == null) throw "Mapa nije učitana!";
 
-  GameSettings.hideElement(btnStart);
+  GameSettings.hideElement(StaticObject.StartGame);
 
   // ako postoji selectMaps, sakrij
   let selMaps = document.getElementById("selectMaps");
@@ -166,7 +166,7 @@ function btnStop_click() {
 
   if (GAME.activeWorldMap == null) throw "Mapa nije učitana!";
 
-  GameSettings.showElement(btnStart);
+  GameSettings.showElement(StaticObject.StartGame);
   let selMaps = document.getElementById("selectMaps");
 
   if (selMaps)
