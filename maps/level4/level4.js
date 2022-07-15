@@ -366,7 +366,7 @@
                  "name":"W2",
                  "rotation":0,
                  "visible":true,
-                 "width":60,
+                 "width":0.01,
                  "x":3239.99,
                  "y":960
                 }, 

@@ -1,19 +1,19 @@
 /// <reference path="../otter/lib-00-GameSettings.js"/>
 
 /**
- * Klasa: Tiled
- * - služi za učitavanje svih mapa iz Tiled-a.
+ * Class: Tiled
+ * - used for loading all maps from Tiled
  */
 class Tiled {
 
   /** Static */
   static firstMapName = "";
-  /** @type {string[]} Popis layera koji se mogu učitati.*/
+  /** @type {string[]} List/Array of layers that can be loaded.*/
   static layerTypes = ["tilelayer"];
 
   /**
-   * Provjerava je li layer dozvoljenog tipa.
-   * @param  {string} type tip layer-a.
+   * Checks if the type of Layer is allowed
+   * @param  {string} type Type of the layer
    * @return {boolean}
    */
   static layerOk(type) {
@@ -23,9 +23,9 @@ class Tiled {
   }
 
   /**
-   * Učitaj podatke o svim mapama. Statička metoda.
-   * @param {JSON} tiledJsExport - JSON podaci iz exporta.
-   * @return {Object.<string, WorldMap>} vraća popis mapa.
+   * Static method. Load the data of every map
+   * @param {JSON} tiledJsExport - JSON data from export
+   * @return {Object.<string, WorldMap>} Returns an array/list of maps
    */
   static loadWorldMaps(tiledJsExport) {
 
@@ -58,24 +58,24 @@ class Tiled {
         for (let i = 0; i < L.length; i++) {
           let layer = new Layer(L[i], world.tilewidth, world.tileheight, world.tilesets);
 
-          //! ako je layerOk učitaj
+          //! If the layer is OK, load it
           if (this.layerOk(layer.type)) {
-            arrL.push(layer); // moraju biti svi skupa radi redoslijeda crtanja
+            arrL.push(layer); // Have to be together because of the order of drawing
             if (layer.isSprite()) {
               world.addSpriteLayer(layer);
-              GameSettings.colorLog("Učitan sprite layer " + layer.name, "info");
+              GameSettings.colorLog("Loaded sprite: " + layer.name, "info");
             }
           }
-          //! ako je layer tipa objectgoup, smatra se da je sprite
+          //! If the layer is typeof objectgroup, it will be considered that it's a sprite
           else if (layer.type == "objectgroup") {
             let ol = new ObjectLayer(L[i], world.tilewidth, world.tileheight, world.tilesets);
             let ols = ol.layers();
             ols.forEach(ll => { world.addSpriteLayer(ll) });
             arrL = arrL.concat(ols);
           }
-          // Napomena: ostale vrste ne može učitati
+          // NOTE: Other types cannot be loaded
           else {
-            console.warn("Ne mogu učitati: " + layer.type);
+            console.warn("Can't load: " + layer.type);
           }
         }
 
@@ -99,21 +99,20 @@ class Tiled {
     }
 
     return worlds;
-  } //// loadWorldMaps
-} //// Tiled
+  }
+}
 
 /**
- * Klasa: WorldGeneral
- * 
- * Sadrži metode koje su zajedničke ostalim klasama.
+ * Class: WorldGeneral
+ * Contains methods which are mutual in other classes
  */
 class WorldGeneral {
 
   // constructor() { }
 
   /**
-   * Metoda za prikupljanje podataka za svako svojstvo koje se pojavljuje u this.
-   * @param {Object.<string, Object>} data - Json podaci koji su definirani u konstruktoru s this.
+   * Method for collecting data for every property which shows in this
+   * @param {Object.<string, Object>} data - JSON data which are defined in the constructor with this
    */
   collectData(data) {
     let t = this;
@@ -125,25 +124,24 @@ class WorldGeneral {
     }
   }
 
-} //// WorldGeneral
+}
 
 /**
- * Klasa: WorldMap
- * 
- * Sadrži sve podatke o Tiled mapi koji se koriste u ovom okviru.
+ * Class: WorldMap
+ * Contains all data of Tiled maps which are used in this framework
  * @extends WorldGeneral
  */
 class WorldMap extends WorldGeneral {
   /**
-   * @param {JSON} data  - Json podaci.
-   * @param {string} name - naziv mape.
+   * @param {JSON} data  - JSON data
+   * @param {string} name - The name of the map
    */
   constructor(data, name) {
 
     super();
 
-    // svojstva koja se nalaze u Tiled export
-    // postavljene su zadane vrijednosti
+    // Properties which are found in Tiled export
+    // Default values are set
     this.height = 0;
     this.width = 0;
 
@@ -155,10 +153,10 @@ class WorldMap extends WorldGeneral {
     /** @type {Array.<Tileset>} */
     this.tilesets = [];
 
-    // skupi podatke definirane gore, a nalaze se u data
+    // Collect defined data which is found in data
     this.collectData(data);
 
-    // ostalo:
+    // The rest:
 
     this.name = name;
 
@@ -177,7 +175,7 @@ class WorldMap extends WorldGeneral {
     this.gravity = 2;
     this.friction = 0.8;
 
-  } //// constructor
+  }
 
   /** @return {Object.<string, Layer>} */
   get spriteLayers() {
@@ -185,7 +183,7 @@ class WorldMap extends WorldGeneral {
   }
 
   /**
-   * Dodaj Layer koji predstavlja Sprite u popis spriteLayers.
+   * Add Layer which represents the Sprite in array of spriteLayers
    * @param {Layer} layer - Sprite Layer
    */
   addSpriteLayer(layer) {
@@ -196,7 +194,7 @@ class WorldMap extends WorldGeneral {
   }
 
   /**
-   * Osvježava prikaz mape.
+   * Refreshes the display of the map
    */
   update() {
 
@@ -212,35 +210,35 @@ class WorldMap extends WorldGeneral {
   }
 
   /**
-   * @return {number} dimenzija u pikselima.
+   * @return {number} Dimension in pixels (Width)
    */
   get widthPx() {
     return this.width * this.tilewidth;
   }
 
   /**
-   * @return {number} dimenzija u pikselima.
+   * @return {number} Dimension in pixels (Height)
    */
   get heightPx() {
     return this.height * this.tileheight;
   }
 
   /**
-   * Obrađuje sudar s platformama.
-   * @param {Sprite} sprite Lik.
+   * Processes collision with platform
+   * @param {Sprite} sprite Character
    */
   collideWithPlatform(sprite) {
-    //rubovi
+    //Edges
     if (sprite.left < 0) { sprite.left = 0; sprite.velocity_x = 0; }
-    //ako se ne stavi jumping na false ovdje, onda neće skakati s ruba
+    //If jumping is not false here, then he can't jump from edges
     if (sprite.bottom > this.heightPx) { sprite.bottom = this.heightPx; sprite.velocity_y = 0; sprite.jumping = false; }
-    // zapinje za 1 px ako se ne stavi -1
+    // If you don't put -1 here, the character will get stuck
     if (sprite.right > this.widthPx - 1) { sprite.right = this.widthPx - 1; sprite.velocity_x = 0; }
     if (sprite.top < 0) { sprite.top = 0; sprite.velocity_y = 0; }
 
-    //kolizije
+    //Collisions
 
-    //top-left
+    //Top-left
     let topi, lefti, bottomi, righti, cmi, v;
     topi = Math.floor(sprite.top / this.tileheight);
     lefti = Math.floor(sprite.left / this.tilewidth);
@@ -249,7 +247,7 @@ class WorldMap extends WorldGeneral {
     this.collider.collide(v, sprite, lefti * this.tilewidth, topi * this.tileheight,
       this.tilewidth, this.tileheight);
 
-    // bottom-left
+    //Bottom-left
     bottomi = Math.floor(sprite.bottom / this.tileheight);
     lefti = Math.floor(sprite.left / this.tilewidth);
     cmi = bottomi * this.width + lefti;
@@ -257,7 +255,7 @@ class WorldMap extends WorldGeneral {
     this.collider.collide(v, sprite, lefti * this.tilewidth, bottomi * this.tileheight,
       this.tilewidth, this.tileheight);
 
-    // top-right
+    //Top-right
     topi = Math.floor(sprite.top / this.tileheight);
     righti = Math.floor(sprite.right / this.tilewidth);
     cmi = topi * this.width + righti;
@@ -265,7 +263,7 @@ class WorldMap extends WorldGeneral {
     this.collider.collide(v, sprite, righti * this.tilewidth, topi * this.tileheight,
       this.tilewidth, this.tileheight);
 
-    // bottom-right
+    //Bottom-right
     bottomi = Math.floor(sprite.bottom / this.tileheight);
     righti = Math.floor(sprite.right / this.tilewidth);
     cmi = bottomi * this.width + righti;
@@ -276,8 +274,8 @@ class WorldMap extends WorldGeneral {
   }
 
   /**
-   * Uzima pozicije platformi i sprema ih u niz.
-   * @param {string} layerName Naziv layera u kojem su platforme.
+   * Takes the position of the platforms and saves them in array
+   * @param {string} layerName The name of the layer in which are the platforms
    */
   setCollisions(layerName) {
     this.collision_map = [];
@@ -291,10 +289,10 @@ class WorldMap extends WorldGeneral {
     }
   }
 
-} //// WorldMap
+}
 
 /**
- * Klasa: Layer
+ * Class: Layer
  */
 class Layer extends WorldGeneral {
   /**
@@ -323,7 +321,7 @@ class Layer extends WorldGeneral {
 
     this.collectData(data);
 
-    //dodatno
+    //Extra
     this.tilewidth = tilewidth;
     this.tileheight = tileheight;
 
@@ -332,10 +330,10 @@ class Layer extends WorldGeneral {
 
     this.collectTiles(tilesets);
 
-  } //// constructor
+  }
 
   /**
-   * Provjerava sadrži li Layer u Tiled-u svojstvo class.
+   * Checks if the Layer in Tiled contains property class
    * @returns {boolean}
    */
   isSprite() {
@@ -343,7 +341,7 @@ class Layer extends WorldGeneral {
   }
 
   /**
-   * Skuplja informacije o Tile-ovima koji pripadaju Layer-u.
+   * Collects information of Tiles which belong to the Layer
    * @param {Array.<Tileset>} tilesets ts
    */
   collectTiles(tilesets) {
@@ -372,9 +370,9 @@ class Layer extends WorldGeneral {
   }
 
   /**
-   * Vraća vrijednost stvojstva
-   * @param  {string} name - Naziv svojstva.
-   * @return Vrijednost svojstva ili undefined ako ne postoji.
+   * Returns the value of the property
+   * @param  {string} name - The name of the property
+   * @return Value of the property or undefined if it doesn't exist
    */
   customProperty(name) {
     let props = this.properties;
@@ -390,13 +388,10 @@ class Layer extends WorldGeneral {
   }
 
   /**
-   * Crta Layer.
+   * Draws the Layer
    * @param {CanvasRenderingContext2D} ctx 
    */
   drawLayer(ctx) {
-
-    //GameSettings.colorLog("crtam layer " + this.name + " " + this.id, "info");
-
     for (let i = 0; i < this.data.length; i++) {
       const tileId = this.data[i];
       if (tileId == 0) continue;
@@ -407,18 +402,18 @@ class Layer extends WorldGeneral {
     }
   }
 
-} //// Layer
+}
 
 /**
- * Klasa: ObjectLayer
- * - ObjectLayer u Tiled-u je definiran drugačije.
- * - Koristi se za učitavanje informacija o objektima koji nemaju animacije.
+ * Class: ObjectLayer
+ * - ObjectLayer in Tiled is defined differently
+ * - Used to load info of objects who don't have animations
  */
 class ObjectLayer {
   /**
    * 
-   * @param {Object} data Podaci iz Tiled-a
-   * @param {Tileset[]} tilesets Niz tileset-ova
+   * @param {Object} data Data from Tiled
+   * @param {Tileset[]} tilesets Array of tilesets
    */
   constructor(data, tw, th, tilesets) {
 
@@ -430,10 +425,10 @@ class ObjectLayer {
     this.tileheight = th;
 
     this.properties = data.properties;
-  } //// constructor
+  }
 
   /**
-   * Vraća popis layera.
+   * Returns an array of layers
    * @return {Layers[]}
    */
   layers() {
@@ -448,7 +443,7 @@ class ObjectLayer {
 
       let t = new Tile(obj.gid, this.tilewidth, this.tileheight);
 
-      // nađi tileset!!!
+      // Find tileset
       for (let j = 0; j < this.tilesets.length; j++) {
         const ts = this.tilesets[j];
         if (ts.containsTile(t.id)) {
@@ -462,7 +457,6 @@ class ObjectLayer {
       layer.height = obj.height;
       layer.x = obj.x;
       layer.y = obj.y;
-      // layers[obj.name] = layer;
       layer.name = obj.name;
 
       layer.properties = this.properties;
@@ -474,16 +468,15 @@ class ObjectLayer {
 }
 
 /**
- * Klasa: ObjectLayerItem
- * - Podaci koji se nalaze u objektima unutar ObjectLayer u Tiled-u.
+ * Class: ObjectLayerItem
+ * - Data which is found in objects under ObjectLayer in Tiled
  */
 class ObjectLayerItem {
   constructor(data) {
 
     if (data.name == "") {
-      GameSettings.colorLog("Ako ne upišete ime u Tiled-u, zapamtite da se layer zove prema ID-u koji je u Tiledu: " + data.id, "warning");
+      GameSettings.colorLog("If you don't write the name in Tiled, remember that the layer's name is based off it's ID in Tiled: " + data.id, "warning");
       console.warn(data);
-      // throw "Morate upisati: name";
       this.name = data.id;
     }
     else this.name = data.name;
@@ -502,7 +495,7 @@ class ObjectLayerItem {
 }
 
 /**
- * Klasa: Tileset
+ * Class: Tileset
  * @extends {WorldGeneral}
  */
 class Tileset extends WorldGeneral {
@@ -528,10 +521,10 @@ class Tileset extends WorldGeneral {
     if (data != undefined) {
       this.collectData(data);
 
-      /** @type {string} putanja do slike. */
+      /** @type {string} Path to the image */
       this.imageSrc = data.image;
 
-      /** @type {Image} slika. */
+      /** @type {Image} Image */
       this.image = null;
 
       this.loadImage();
@@ -539,8 +532,8 @@ class Tileset extends WorldGeneral {
   }
 
   /**
-   * Učitava sliku.
-   * - Učitavanje slika radi asinkrono.
+   * Loads the image
+   * - Loading images works asynchronously
    */
   loadImage() {
     let src = this.imageSrc;
@@ -548,15 +541,15 @@ class Tileset extends WorldGeneral {
     this.image.src = src;
     this.imageLoaded = false;
     this.image.addEventListener("load", () => {
-      // nakon što se slika učita, postavlja info. da je učitana, kako bi mogli provjeriti
+      // When the image loads, set info that it's loaded so we can check
       this.imageLoaded = true;
     });
   }
 
   /**
-   * Provjerava sadrži li Tileset Tile s unesenim ID-om.
-   * @param {number} tileId id broj Tile-a
-   * @returns {boolean} vraća true/false.
+   * Checks the Tile of the Tileset with inserted ID
+   * @param {number} tileId ID of the Tile
+   * @returns {boolean} Returns true/false
    */
   containsTile(tileId) {
     let start = this.firstgid;
@@ -570,36 +563,33 @@ class Tileset extends WorldGeneral {
 
   }
 
-} //// Tileset
+}
 
 /**
- * Klasa: Tile
+ * Class: Tile
  */
 class Tile {
   /**
-   * @param {number} id ID Tile-a
-   * @param {number} w širina Tile-a
-   * @param {number} h visina Tile-a
+   * @param {number} id ID of the Tile
+   * @param {number} w Width of the Tile
+   * @param {number} h Height of the Tile
    */
   constructor(id, w, h) {
     this.id = id;
-    // this.layerIndex = layerIndex;
-    // this.layerRow = r;
-    // this.layerCol = c;
-    //poz. na layeru
+    //Position
     this.x = 0;
     this.y = 0;
 
     this.width = w;
     this.height = h;
 
-    /** @type {Tileset} Tileset kojem pripada */
+    /** @type {Tileset} Which tileset it belongs to */
     this.tileset = null;
   }
 
   /**
-   * Indeks Tile-a u Tileset-u.
-   * @return {number} Indeks u Tileset-u
+   * Index of the Tile in the Tileset
+   * @return {number} Index in Tileset
    */
   get indexTs() {
     let i = this.id - this.tileset.firstgid;
@@ -607,7 +597,7 @@ class Tile {
   }
 
   /**
-   * @return {number} vraća redak Tileset-a u kojem se Tile nalazi
+   * @return {number} Returns a row of the Tileset in which the Tile is
    */
   get tilesetRow() {
     let i = this.indexTs;
@@ -615,7 +605,7 @@ class Tile {
   }
 
   /**
-   * @return {number} vraća početnu poziciju (x koordinatu u pikselima) Tile-a na Tileset-u
+   * @return {number} Returns initial position (x axis) of the Tile on Tileset
    */
   get sx() {
     let tsCol = this.indexTs % this.tileset.columns;
@@ -623,7 +613,7 @@ class Tile {
   }
 
   /**
-   * @return {number} vraća početnu poziciju (y koordinatu u pikselima) Tile-a na Tileset-u
+   * @return {number} Returns initial position (y axis) of the Tile on Tileset
    */
   get sy() {
     let tsRow = Math.trunc(this.indexTs / this.tileset.columns);
@@ -634,11 +624,10 @@ class Tile {
    * @param {CanvasRenderingContext2D} ctx 
    */
   drawTile(ctx) {
-    // napomena: širina za crtanje se može razlikovati od širine sličice
+    // NOTE: Size for drawing can be different from size of the image
     ctx.drawImage(this.tileset.image,
-      this.sx, this.sy, this.width, this.height, // todo: početak i dimenzija na TS
-      this.x, this.y, this.width, this.height); // na mapi
+      this.sx, this.sy, this.width, this.height, // todo: Initial coordinates & dimension on Tileset
+      this.x, this.y, this.width, this.height); // On display
   }
 
-} //// Tile
-
+}

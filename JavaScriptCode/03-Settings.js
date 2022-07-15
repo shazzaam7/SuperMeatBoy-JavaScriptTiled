@@ -44,28 +44,7 @@ function setup() {
   StaticObject.Selected = GAME.activeWorldMap.name;
 
   GameSettings.output(StaticObject.Selected);
-
-  switch (StaticObject.Selected) {
-    case "level1":
-      setuplevel1();
-      break;
-
-    case "level2":
-      setupLevel2();
-      break;
-
-    case "level3":
-      setupLevel3();
-      break;
-
-    case "level4":
-      setupLevel4();
-      break;
-
-    default:
-      break;
-  };
-
+  setupLevel();
   if (StaticObject.Meatboy.deathcounter != 0) {
     StaticObject.Meatboy.deathcounter = 0;
   }
@@ -73,100 +52,93 @@ function setup() {
   render_main();
 };
 
-//Setups for levels
-
-function setuplevel1() {
-
+/**
+ * Function to setup levels
+ */
+function setupLevel() {
   GAME.clearSprites();
   GAME.activeWorldMap.setCollisions("Floor");
+  switch (StaticObject.Selected) {
+    case "level1":
+      StaticObject.Meatboy = new MeatBoy(4 * 60, 18 * 60, GAME.getSpriteLayer("Meat"));
+      GAME.addSprite(StaticObject.Meatboy);
 
-  StaticObject.Meatboy = new MeatBoy(4 * 60, 18 * 60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(StaticObject.Meatboy);
+      StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+      GAME.addSprite(StaticObject.Goal);
 
-  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
-  GAME.addSprite(StaticObject.Goal);
+      for (let index = 0; index < 1; index++) {
+        let id = index + 1;
+        StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
+        GAME.addSprite(StaticObject.SpinningSaw[index]);
+      }
 
-  for (let index = 0; index < 1; index++) {
-    let id = index + 1;
-    StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
-    GAME.addSprite(StaticObject.SpinningSaw[index]);
-  }
+      for (let index = 0; index < 5; index++) {
+        let i = index + 1;
+        StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
+        GAME.addSprite(StaticObject.Wall[index]);
+      }
+      break;
+    case "level2":
+      StaticObject.Meatboy = new MeatBoy(12 * 60, 21 * 60, GAME.getSpriteLayer("Meat"));
+      GAME.addSprite(StaticObject.Meatboy);
 
-  for (let index = 0; index < 5; index++) {
-    let i = index + 1;
-    StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
-    GAME.addSprite(StaticObject.Wall[index]);
-  }
-};
+      StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+      GAME.addSprite(StaticObject.Goal);
 
-function setupLevel2() {
+      for (let index = 0; index < 3; index++) {
+        let id = index + 1;
+        StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
+        GAME.addSprite(StaticObject.SpinningSaw[index]);
+      }
 
-  GAME.clearSprites();
+      for (let index = 0; index < 5; index++) {
+        let i = index + 1;
+        StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
+        GAME.addSprite(StaticObject.Wall[index]);
+      }
+      break;
+    case "level3":
+      GAME.clearSprites();
+      GAME.activeWorldMap.setCollisions("Floor");
 
-  GAME.activeWorldMap.setCollisions("Floor");
+      StaticObject.Meatboy = new MeatBoy(3 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
+      GAME.addSprite(StaticObject.Meatboy);
 
-  StaticObject.Meatboy = new MeatBoy(12 * 60, 21 * 60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(StaticObject.Meatboy);
+      StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+      GAME.addSprite(StaticObject.Goal);
 
-  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
-  GAME.addSprite(StaticObject.Goal);
+      for (let index = 0; index < 5; index++) {
+        let id = index + 1;
+        StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
+        GAME.addSprite(StaticObject.SpinningSaw[index]);
+      }
 
-  for (let index = 0; index < 3; index++) {
-    let id = index + 1;
-    StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
-    GAME.addSprite(StaticObject.SpinningSaw[index]);
-  }
+      for (let index = 0; index < 5; index++) {
+        let i = index + 1;
+        StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
+        GAME.addSprite(StaticObject.Wall[index]);
+      }
+      break;
+    case "level4":
+      StaticObject.Meatboy = new MeatBoy(2 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
+      GAME.addSprite(StaticObject.Meatboy);
 
-  for (let index = 0; index < 5; index++) {
-    let i = index + 1;
-    StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
-    GAME.addSprite(StaticObject.Wall[index]);
-  }
-};
+      StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
+      GAME.addSprite(StaticObject.Goal);
 
-function setupLevel3() {
+      for (let index = 0; index < 6; index++) {
+        let i = index + 1;
+        StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
+        GAME.addSprite(StaticObject.Wall[index]);
+      }
 
-  GAME.clearSprites();
-  GAME.activeWorldMap.setCollisions("Floor");
-
-  StaticObject.Meatboy = new MeatBoy(3 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(StaticObject.Meatboy);
-
-  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
-  GAME.addSprite(StaticObject.Goal);
-
-  for (let index = 0; index < 5; index++) {
-    let id = index + 1;
-    StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
-    GAME.addSprite(StaticObject.SpinningSaw[index]);
-  }
-
-  for (let index = 0; index < 5; index++) {
-    let i = index + 1;
-    StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
-    GAME.addSprite(StaticObject.Wall[index]);
-  }
-};
-
-function setupLevel4() {
-  GAME.clearSprites();
-  GAME.activeWorldMap.setCollisions("Floor");
-
-  StaticObject.Meatboy = new MeatBoy(2 * 60, 22 * 60, GAME.getSpriteLayer("Meat"));
-  GAME.addSprite(StaticObject.Meatboy);
-
-  StaticObject.Goal = new Goal(GAME.getSpriteLayer("Bandage"));
-  GAME.addSprite(StaticObject.Goal);
-
-  for (let index = 0; index < 6; index++) {
-    let i = index + 1;
-    StaticObject.Wall[index] = new Wall(GAME.getSpriteLayer("W" + i));
-    GAME.addSprite(StaticObject.Wall[index]);
-  }
-
-  for (let index = 0; index < 9; index++) {
-    let id = index + 1;
-    StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
-    GAME.addSprite(StaticObject.SpinningSaw[index]);
+      for (let index = 0; index < 9; index++) {
+        let id = index + 1;
+        StaticObject.SpinningSaw[index] = new Enemy(GAME.getSpriteLayer("Saw" + id));
+        GAME.addSprite(StaticObject.SpinningSaw[index]);
+      }
+      break;
+    default:
+      break;
   }
 }

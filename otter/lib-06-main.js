@@ -17,22 +17,18 @@ var GAME = null;
 /** @type {Engine} */
 var ENGINE = null;
 
-//! sučelje
-const btnMaps = document.getElementById("btnMaps");
-const canvasGame = document.getElementById("game");
-
 //////////////////
 //? FUNCTIONS ////
 //////////////////
 
 /**
- * Prilagođava veličinu canvasa.
+ * Adjusts the size of the canvas
  * @param {Event} event 
  */
 function resize_main(event) {
 
-  // visina izbornika
-  let top = document.getElementById("divIzbornik").offsetHeight + 10;
+  // Height of the menu
+  let top = document.getElementById("divMainMenu").offsetHeight + 10;
   //top += document.getElementById("taInfo").offsetHeight;
   top += document.getElementsByClassName("infowrapper")[0].offsetHeight;
 
@@ -50,7 +46,7 @@ function resize_main(event) {
 };
 
 /**
- * Osvježava sliku.
+ * Refreshes the image
  */
 function render_main() {
 
@@ -82,7 +78,7 @@ function setupEnv_main() {
   ////////////////
 
   SENSING = new Sensing();
-  DISPLAY = new Display(canvasGame);
+  DISPLAY = new Display(StaticObject.canvasGame);
   GAME = new Game();
   ENGINE = new Engine(1000 / 30, render_main, update_main);
 
@@ -90,7 +86,7 @@ function setupEnv_main() {
   //? INITIALIZE ////
   ///////////////////
 
-  GAME.loadWorldMaps(TileMaps); // učitava iz TiledExporta
+  GAME.loadWorldMaps(TileMaps); // Loades from TileExport
 
   if (GAME.activeWorldMap == null) {
     DISPLAY.buffer.canvas.height = 10;
@@ -111,10 +107,10 @@ function setupEnv_main() {
 
   StaticObject.StartGame.addEventListener("click", btnStart_click);
   StaticObject.StopGame.addEventListener("click", btnStop_click);
-  btnMaps.addEventListener("click", GameSettings.ChangeMap);
+  StaticObject.MapsButton.addEventListener("click", GameSettings.ChangeMap);
 
   // mouse
-  canvasGame.addEventListener("mousedown", SENSING.mouseDown_eventHandler);
-  canvasGame.addEventListener("mouseup", SENSING.mouseUp_eventHandler);
+  StaticObject.canvasGame.addEventListener("mousedown", SENSING.mouseDown_eventHandler);
+  StaticObject.canvasGame.addEventListener("mouseup", SENSING.mouseUp_eventHandler);
 
-} //// setupEnv
+}

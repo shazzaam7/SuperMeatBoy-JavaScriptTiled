@@ -177,7 +177,7 @@
    <property name="class" value="Wall"/>
   </properties>
   <object id="2" name="W1" gid="1014" x="1439" y="1140" width="62" height="120"/>
-  <object id="3" name="W2" gid="1014" x="3239.99" y="960" width="60" height="420"/>
+  <object id="3" name="W2" gid="1014" x="3239.99" y="960" width="0.01" height="420"/>
   <object id="7" name="W3" gid="703" x="1980" y="600" width="60" height="60"/>
   <object id="8" name="W4" gid="703" x="2040" y="600" width="60" height="60"/>
   <object id="9" name="W5" gid="703" x="1980" y="540" width="60" height="60"/>

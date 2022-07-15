@@ -9,13 +9,16 @@ class StaticObject {
         };
     };
 
+    //Selected level
     static Selected;
 
-    //Buttons
+    //Buttons of the menu
     static StopwatchButton = document.getElementById("btnStopwatch");
     static SetupGame = document.getElementById("btnSetupGame");
     static StartGame = document.getElementById("btnStart");
     static StopGame = document.getElementById("btnStop");
+    static MapsButton = document.getElementById("btnMaps");
+    static canvasGame = document.getElementById("game");
 
     //Objects
     static Meatboy;

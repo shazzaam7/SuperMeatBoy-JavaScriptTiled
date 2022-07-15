@@ -16,11 +16,12 @@ class GameSettings {
 
     DISPLAY.clear();
 
-    let div = document.getElementById("divIzbornik");
+    let div = document.getElementById("divMainMenu");
 
     let sel = document.getElementById("selectMaps");
-    if (sel != undefined)
-      div.removeChild(sel); //ako postoji izbriši
+    if (sel != undefined) {
+      div.removeChild(sel);
+    } // If it exists, delete it because it's not needed anymore
     sel = document.createElement("select");
     sel.id = "selectMaps";
     let opt = document.createElement("option");
@@ -59,13 +60,13 @@ class GameSettings {
   } //// ChangeMap
 
   /**
-   * Ispis tekstualne poruke na konzolu u različitim bojama.
-   * @param {string} message Poruka koju ispisuje.
-   * @param {string} color Vrsta poruke: 
-   * - success: zelena
-   * - info: plava
-   * - error: crvena
-   * - warning: narančasta
+   * Prints message in colours
+   * @param {string} message Printed Message
+   * @param {string} color Type of message 
+   * - success: green
+   * - info: blue
+   * - error: red
+   * - warning: orange
    */
   static colorLog(message, color) {
 
@@ -89,10 +90,10 @@ class GameSettings {
     }
 
     console.log("%c" + message, "color:" + color);
-  } //// colorLog
+  }
 
   /**
-   * Sakrij element.
+   * Hide element
    * @param {HTMLElement} element 
    */
   static hideElement(element) {
@@ -100,7 +101,7 @@ class GameSettings {
   }
 
   /**
-  * Sakrij element.
+  * Hide element
   * @param {HTMLElement} element 
   */
   static showElement(element) {
@@ -108,9 +109,9 @@ class GameSettings {
   }
 
   /**
-  * @param  {string} text - Tekst koji se ispisuje.
-  * @param  {boolean} reset - Hoće li se pobrisati postojeći (true/false).
-  * Može se izostaviti.
+  * @param  {string} text - Message which will be printed
+  * @param  {boolean} reset - Will it delete already printed messages?
+  * Can be left out
   */
   static output(text, reset) {
 
@@ -125,12 +126,12 @@ class GameSettings {
     resize_main();
   }
 
-} //// GameSettings
+}
 
 //!----------- btnStart ----------------
 
 /**
- * Event hanlder za btnStart.x
+ * Event for Start button
  */
 function btnStart_click() {
 
@@ -138,12 +139,12 @@ function btnStart_click() {
 
   GameSettings.hideElement(StaticObject.StartGame);
 
-  // ako postoji selectMaps, sakrij
+  // If Select Maps exists, hide it
   let selMaps = document.getElementById("selectMaps");
   if (selMaps)
     GameSettings.hideElement(selMaps);
 
-  // provjeri veličinu
+  // Check the size
   resize_main();
 
   GameSettings.colorLog("Engine started", "success");
@@ -155,7 +156,7 @@ function btnStart_click() {
 //!----------- btnStop ----------------
 
 /**
- * Event hanlder za btnStop.
+ * Event for Stop button
  */
 function btnStop_click() {
 

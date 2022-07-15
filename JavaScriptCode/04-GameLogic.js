@@ -14,18 +14,23 @@
 /// <reference path="05-Stopwatch.js"/>
 
 function update_main() {
+  cycleTimer();
   switch (GAME.activeWorldMap.name) {
     case "level1":
       characterControl();
+      interactions();
       break;
     case "level2":
       characterControl();
+      interactions();
       break;
     case "level3":
       characterControl();
+      interactions();
       break;
     case "level4":
       characterControl();
+      interactions();
       break;
     default:
       break;
@@ -39,8 +44,6 @@ function update_main() {
  */
 function characterControl() {
 
-  cycleTimer(); //Might disable because performance can tank sometimes
-
   if (SENSING.left.active) {
     StaticObject.Meatboy.moveLeft();
   };
@@ -53,6 +56,17 @@ function characterControl() {
     StaticObject.Meatboy.jump();
   };
 
+  if (SENSING.leftShift.active) {
+    StaticObject.Meatboy.sprint = true;
+  } else {
+    StaticObject.Meatboy.sprint = false;
+  }
+};
+
+/**
+ * Function which is used for all of the interactions of Meat Boy and other objects like Saws, Walls etc.
+ */
+function interactions() {
   if (StaticObject.Meatboy.touching(StaticObject.Goal)) {
     Stopwatch.startTimer = false;
     deathCounterRating();
@@ -102,8 +116,11 @@ function characterControl() {
       };
     };
   };
-};
+}
 
+/**
+ * Function created to check for deaths and then outputs rating based on it
+ */
 function deathCounterRating() {
   switch (StaticObject.Meatboy.deathcounter) {
     case 0:

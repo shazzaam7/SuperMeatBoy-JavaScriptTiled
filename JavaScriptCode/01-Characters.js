@@ -13,11 +13,16 @@
  */
 class PlayableCharacter extends Sprite {
   constructor(x, y, layer) {
-    super(x, y, 60 - 3, 60 - 3);
+    super(x, y, 60, 60 - 0.0001);
 
     this.frame_sets = {};
     this.layer = layer;
     this._deathcounter = 0;
+    this.sprint = false;
+
+    if (this.constructor == PlayableCharacter) {
+      throw new Error("This is an Abstract Class!");
+    }
   };
 
   get deathcounter() {
@@ -42,16 +47,6 @@ class PlayableCharacter extends Sprite {
     this.velocity_x -= 3.5;
   };
 
-  moveUp() {
-    this.direction = 0;
-    this.velocity_y -= 2.5;
-  };
-
-  moveDown() {
-    this.direction = 180;
-    this.velocity_y += 2.5;
-  };
-
   jump(h = 69) {
 
     if (!this.jumping) {
@@ -69,7 +64,11 @@ class PlayableCharacter extends Sprite {
   };
 
   updatePosition(gravity, friction) {
-    super.updatePosition(gravity = 3.5, friction = 0.86);
+    if (this.sprint) {
+      super.updatePosition(gravity = 3.5, friction = 0.89);
+    } else {
+      super.updatePosition(gravity = 3.5, friction = 0.80);
+    }
   };
 
   start(levelx, levely) {

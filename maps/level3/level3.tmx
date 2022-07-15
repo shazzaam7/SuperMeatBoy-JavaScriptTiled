@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="60" tileheight="60" infinite="0" nextlayerid="9" nextobjectid="14">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="60" tileheight="60" infinite="0" nextlayerid="9" nextobjectid="14">
  <editorsettings>
   <export target="../../level3.js" format="js"/>
  </editorsettings>
@@ -136,9 +136,9 @@
   </properties>
   <object id="2" name="W1" gid="1181" x="779.85" y="1140" width="60.3" height="120"/>
   <object id="3" name="W2" gid="1181" x="779.85" y="960" width="60.3" height="60"/>
-  <object id="4" name="W3" gid="1181" x="1020" y="1020" width="60.01" height="60"/>
-  <object id="5" name="W4" gid="1181" x="1020" y="780" width="60.01" height="60"/>
-  <object id="10" name="W5" gid="1200" x="1379.99" y="600" width="60" height="420"/>
+  <object id="4" name="W3" gid="1181" x="1019.99" y="1020" width="0.01" height="60"/>
+  <object id="5" name="W4" gid="1181" x="1080.01" y="780" width="0.01" height="60"/>
+  <object id="10" name="W5" gid="1200" x="1379.99" y="600" width="0.01" height="420"/>
  </objectgroup>
  <objectgroup id="6" name="Enemy">
   <properties>

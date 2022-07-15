@@ -11,13 +11,13 @@ class Sensing {
     this.keyD = new ButtonInput();
     this.keyW = new ButtonInput();
     this.keyS = new ButtonInput();
-
+    this.leftShift = new ButtonInput();
     this.stop = new ButtonInput();
 
     /** @type {MouseInput} */
     this.mouse = new MouseInput();
 
-    /** omjer nove mape */
+    /** Ratio of the new map */
     this.ratioW = 1;
     this.ratioH = 1;
 
@@ -93,6 +93,9 @@ class Sensing {
       case 83: //s
         this.keyS.getInput(down);
         break;
+      case 16:
+        this.leftShift.getInput(down);
+        break;
       default:
         console.log(key_code);
         break;
@@ -102,7 +105,7 @@ class Sensing {
   };
 
   /**
-   * Resetira stanje tipki, ako neka ostane aktivna u trenutku prekida igre.
+   * Resets the state of the button if it stays active when the game ends
    */
   reset() {
     for (const key in this) {

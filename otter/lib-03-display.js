@@ -1,7 +1,7 @@
 /// <reference path="lib-01-tiled.js"/>
 
 /**
- * Klasa: Display
+ * Class: Display
  */
 class Display {
   /**
@@ -15,8 +15,8 @@ class Display {
   }
 
   /**
-   * Crta mapu napravljeno pomoću Tiled-a.
-   * @param  {WorldMap} map - Mapa
+   * Draws the map that was made using Tiled
+   * @param  {WorldMap} map - The map
    */
   drawMap(map) {
 
@@ -36,7 +36,7 @@ class Display {
   };
 
   /**
-   * Crta bilo koji objekt.
+   * Draws any object
    */
   drawObject(image, source_x, source_y, destination_x, destination_y, width, height) {
     this.buffer.drawImage(image, source_x, source_y, width, height, Math.round(destination_x), Math.round(destination_y), width, height);
@@ -44,14 +44,14 @@ class Display {
 
 
   /**
-   * Crta objekt.
-   * @param  {Sprite} sprite - Pravokutnik s koordinatama i dim.
+   * Draws the Sprite
+   * @param  {Sprite} sprite - Rectangle with coordinates & dimensions
    */
   drawSprite(sprite) {
 
     let tile = sprite.myTile(2);
     if (sprite.frame_value != undefined) {
-      tile = sprite.myTile(sprite.frame_value); //! Ovo sad radi
+      tile = sprite.myTile(sprite.frame_value); 
     }
 
     if (tile == undefined || tile == null) {
@@ -59,7 +59,7 @@ class Display {
       this.buffer.fillRect(Math.round(sprite.x), Math.round(sprite.y), sprite.width, sprite.height);
     }
     else {
-      // koordinate na tilesetu
+      // Coordinates on the Tileset
       // let posX = (tile.colX % sprite.layer.widthCols) * tile.width;
       // let posY = Math.trunc(tile.rowY / sprite.layer.widthCols) * tile.height;
 
@@ -82,11 +82,11 @@ class Display {
   }
 
   /**
-   * Prilagođava dimenziju canvasa vidljivom području na ekranu.
-   * @param  {number} width - Širina na koju se mora prilagoditi.
-   * @param  {number} height - Visina na koju se mora prilagoditi.
-   * @param  {number} mapWidthPx - Širina mape u pikselima.
-   * @param  {number} mapHeightPx - Visina mape u pikselima.
+   * Adjusts the dimension of the canvas to the visible area on the display
+   * @param  {number} width - Width for adjusting
+   * @param  {number} height - Height for adjusting
+   * @param  {number} mapWidthPx - Width of the map in pixels
+   * @param  {number} mapHeightPx - Height of the map in pixel
    */
   resize(width, height, mapWidthPx, mapHeightPx) {
 
@@ -111,7 +111,7 @@ class Display {
   }
 
   /**
-   * Crta image iz buffer.canvas na vidljivi canvas.
+   * Draws the image from buffer.canvas on the visible canvas
    */
   render() {
 
@@ -120,7 +120,7 @@ class Display {
   }
 
   /**
-   * Briše sadržaj iz buffera za crtanje.
+   * Delets the content from buffer for drawing
    */
   clear() {
     this.buffer.clearRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height);

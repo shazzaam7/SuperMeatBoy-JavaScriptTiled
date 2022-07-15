@@ -1,5 +1,5 @@
 /**
- * Klasa: Engine
+ * Class: Engine
  */
 class Engine {
 
@@ -15,7 +15,6 @@ class Engine {
     this.update = updateFunction; // The update function
     this.render = renderFunction; // The render function
 
-    //arrow funkcija kako bi moglo raditi za event handler
     //! arrow
     this.handleRun = (time_step) => {
       this.runLoop(time_step);  //? this se odnosi na engine
@@ -23,11 +22,11 @@ class Engine {
 
     this.START = false;
 
-  } //// constructor
+  }
 
   /**
    * Game loop
-   * @param  {number} time_stamp - Vrijeme ...?
+   * @param  {number} time_stamp - Time
    */
   runLoop(time_stamp) { // This is one cycle of the game loop
 
@@ -64,7 +63,7 @@ class Engine {
   }; //// run
 
   /**
-   * Pokreće engine (loop).
+   * Starts the game engine in a loop
    */
   start() {
 
@@ -75,14 +74,15 @@ class Engine {
 
     this.animationFrameRequest_ID = window.requestAnimationFrame(this.handleRun);
 
-  } //// start
+  }
   /**
-   * Zaustavlja animation frame pomoću cancelAnimationFrame. Mora imati id od AFR.
+   * Stops the animation frame with cancelAnimationFrame
+   * Has to have id of animationFrameRequest
    */
   stop() {
     this.START = false;
     window.cancelAnimationFrame(this.animationFrameRequest_ID);
-  } //// stop
+  }
 
-} //// Engine
+}
 

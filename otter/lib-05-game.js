@@ -1,13 +1,13 @@
 /// <reference path="lib-01-tiled.js"/>
 
 /**
- * Klasa: Game
+ * Class: Game
  */
 class Game {
 
   constructor() {
 
-    // todo: world jer je Map rezervirana!
+    // todo: World because map is already used
     /** @type {WorldMap} */
     this.activeWorldMap = null;
     this.worlds = {};
@@ -16,7 +16,7 @@ class Game {
 
   logSprites_ActiveMap() {
 
-    if (this.activeWorldMap == null) throw "Mapa nije učitana";
+    if (this.activeWorldMap == null) throw "Mapa is not loaded";
 
     let s = this.activeWorldMap.sprites;
     for (let i = 0; i < s.length; i++) {
@@ -24,7 +24,7 @@ class Game {
       console.log(sprite);
     }
 
-  } ////logSprites
+  }
 
   logLayers_ActiveMap() {
     let la = this.activeWorldMap.layers;
@@ -33,10 +33,10 @@ class Game {
       console.log(`layer[${i}] -> ${layer.name}`);
       console.log(layer);
     }
-  } //// logLayers
+  }
 
   /**
-   * Poziva update aktivne mape/world-a.
+   * Updates active map/world
    */
   update() {
 
@@ -48,36 +48,36 @@ class Game {
   };
 
   /**
-   * Učitaj podatke o svim mapama
-   * @param {JSON} tiledJsExport - JSON podaci iz exporta.
+   * Load data of every map
+   * @param {JSON} tiledJsExport - JSON data from export
    */
   loadWorldMaps(tiledJsExport) {
 
     this.worlds = Tiled.loadWorldMaps(tiledJsExport);
-    // let prva = Tiled.firstMapName;
-    // this.activeWorldMap = this.worlds[prva];
+    // let first = Tiled.firstMapName;
+    // this.activeWorldMap = this.worlds[first];
 
-  } //// loadWorldMaps
+  }
 
   /**
-   * Provjerava je li mapa s tim imenom već učitana.
-   * @param {string} worldName - Naziv mape.
-   * @returns {boolean} vraća true ako već postoji, ili false ako je nema.
+   * Checks if the map with that name is already loaded
+   * @param {string} worldName - The name of the map
+   * @returns {boolean} Returns true if it already exists or false if it doesn't
    */
   hasWorld(worldName) {
     return (this.worlds[worldName] != undefined);
   }
 
   /**
-   * Postavlja aktivnu mapu/svijet koji se trenutno crta.
+   * Sets active map/world which is currently drawing
    * @param {string} name - Naziv mape.
    */
   setActiveWorldMap(name) {
-    if (this.hasWorld(name) == false) throw name + " ne postoji!";
+    if (this.hasWorld(name) == false) throw name + " doesn't exist!";
 
     if (this.activeWorldMap != null) {
       if (this.activeWorldMap.sprites.length > 0) {
-        console.warn("Promijenjena je mapa, pazite na sprites koji ostaju u staroj mapi:");
+        console.warn("Map has changed, watch out for sprites that stay on the old map:");
         console.log(this.activeWorldMap.sprites);
       }
     }
@@ -85,7 +85,7 @@ class Game {
   }
 
   /**
-   * Dodaje sprite s u popis svih koji se crtaju.
+   * Adds sprites s into a list/array of every sprite that is being drawn
    * @param {Sprite} s 
    */
   addSprite(s) {
@@ -93,7 +93,7 @@ class Game {
   }
 
   /**
-   * Pobriši sve sprite-ove iz aktivne mape.
+   * Delete every sprite from active map
    */
   clearSprites() {
     if (this.activeWorldMap != null)
@@ -101,8 +101,8 @@ class Game {
   }
 
   /**
-   * Vraća layer prema nazivu.
-   * @param  {string} name naziv Layer-a
+   * Returns Layer based on the name
+   * @param  {string} name The name of the Layer
    * @return {Layer}
    */
   getSpriteLayer(name) {
@@ -110,8 +110,8 @@ class Game {
   }
 
   /**
-   * Vraća Layer prema nazivu ili null ako ga nema.
-   * @param {string} name Naziv layer-a
+   * Returns Layer based on the name or null if it doesn't exist
+   * @param {string} name The name of the layer
    * @returns {Layer}
    */
   getLayer(name) {
@@ -124,17 +124,16 @@ class Game {
     return null;
   }
 
-} //// Game
-
+}
 
 //! -------------------------------------------------
 
 class GameWorldObject {
   /**
-   * @param  {number} x - x koordinata.
-   * @param  {number} y - y koordinata.
-   * @param  {number} width - širina.
-   * @param  {number} height - visina.
+   * @param  {number} x - x coordinate
+   * @param  {number} y - y coordinate
+   * @param  {number} width - width
+   * @param  {number} height - height
    */
   constructor(x, y, width, height) {
 
@@ -179,11 +178,11 @@ class GameWorldObjectAnimator extends GameWorldObject {
   }
 
   /**
-   * Mijenja aktivni frameset ovisno o smjeru i brzini lika.
-   * @param {Array} frame_set niz
-   * @param {string} mode moguće vrijednosti su "loop" ili "pause"
-   * @param {number} delay razmak između izmjene sličica
-   * @param {number} frame_index indeks početnog. Zadana vrijednost je 0.
+   *  Changes active frameset based on direction and speed of the character
+   * @param {Array} frame_set Array
+   * @param {string} mode loop or pause
+   * @param {number} delay between the change of the images/animation
+   * @param {number} frame_index Index of the beginning frame. Default value is 0
    */
   changeFrameSet(frame_set, mode, delay = 10, frame_index = 0) {
 
@@ -199,7 +198,7 @@ class GameWorldObjectAnimator extends GameWorldObject {
   }
 
   /**
-   * Vrti animacije.
+   * Loops animations
    */
   loop() {
 
@@ -220,8 +219,8 @@ class GameWorldObjectAnimator extends GameWorldObject {
 };
 
 /**
- * Klasa: Sprite
- * - Predstavlja lika igre.
+ * Class: Sprite
+ * - Presents character of the game
  */
 class Sprite extends GameWorldObjectAnimator {
   constructor(x, y, w, h) {
@@ -237,12 +236,12 @@ class Sprite extends GameWorldObjectAnimator {
 
     this.direction = 0;
 
-    //animacije za svaku akciju
+    //Animations for every action
     this.frame_sets = null;
 
     this._visible = false;
 
-    /** @type {boolean} crtanje okvira oko lika */
+    /** @type {boolean} Drawing of the border around the character aka Hitbox */
     this.okvir = false;
 
   }
@@ -259,7 +258,7 @@ class Sprite extends GameWorldObjectAnimator {
   set layer(la) {
     this._layer = la;
     if (this.frame_sets == undefined || this.frame_sets == null)
-      throw "Animacije nisu definirane! (frame_sets)";
+      throw "Animations are not defined! (frame_sets)";
     // this.frame_sets = GameSettings.frameSets[this.layer.name];
     this.visible = la.visible;
   }
@@ -269,8 +268,8 @@ class Sprite extends GameWorldObjectAnimator {
   }
 
   /**
-   * Dohvaća frameset.
-   * @param {string} key ID frameset-a
+   * Grabs the frameset
+   * @param {string} key ID of the frameset
    * @returns {Array}
    */
   frameSets(key) {
@@ -281,19 +280,19 @@ class Sprite extends GameWorldObjectAnimator {
   }
 
   /**
-   * Osvježava animacije ovisno o smjeru i brzini lika.
+   * Refreshes the animations based on the direction and the speed of the character
    */
   updateAnimation() {
     
     if (this.direction == 0) {
       if (this.velocity_y < -0.1) this.changeFrameSet(this.frameSets("walk-up"), "loop", 5);
       else this.changeFrameSet(this.frameSets("up"), "pause");
-    }
-    // ako je lik okrenut desno
+    } // right direction
+
     else if (this.direction == 90) {
-      // ako ima brzinu po x, onda rotiraj animacije koje postoje za walk-right
+      // If the character is moving on x coordinate, rotate animations which are for walk-right
       if (this.velocity_x > 0.1) this.changeFrameSet(this.frameSets("walk-right"), "loop", 5);
-      // ako stoji, onda prikaži zadani položaj za desno
+      // If the character is standing still, then show default position for right
       else this.changeFrameSet(this.frameSets("right"), "pause");
     }
     else if (this.direction == 180) {
@@ -307,11 +306,11 @@ class Sprite extends GameWorldObjectAnimator {
 
     this.animate();
 
-  } //// updateAnimation
+  }
 
   /**
-   * @param {number} - tileId
-   * @return {Tile} vraća tile
+   * @param {number} - ID of the Tile
+   * @return {Tile} Returns Tile
    */
   myTile(rbr) {
     let t = null;
@@ -354,8 +353,8 @@ class Sprite extends GameWorldObjectAnimator {
     this.velocity_y += 0.5;
   }
   /**
-   * Metoda za skakanje.
-   * @param  {number} h broj točkica koliko skače, zadano je 50.
+   * Method for jumping
+   * @param  {number} h How much the character jumps (in pixels). Default is 50
    */
   jump(h = 50) {
 
@@ -368,9 +367,9 @@ class Sprite extends GameWorldObjectAnimator {
   }
 
   /**
-   * Osvježava položaj lika.
-   * @param {number} gravity koliko brzo pada na pod
-   * @param {number} friction postotak smanjivanja brzine
+   * Refreshes the position of the character
+   * @param {number} gravity How fast is the character falling on the floor
+   * @param {number} friction Percentage of slowing down
    */
   updatePosition(gravity = 0, friction = 0) {
     this.x_old = this.x;
@@ -384,8 +383,8 @@ class Sprite extends GameWorldObjectAnimator {
   }
 
   /**
-   * Provjerava dira li lika.
-   * @param {Sprite} sprite lik
+   * Checks if the character is touching something
+   * @param {Sprite} sprite Character
    * @returns {boolean}
    */
   touching(sprite) {
@@ -410,15 +409,12 @@ class Sprite extends GameWorldObjectAnimator {
       a.top <= b.bottom &&
       b.top <= a.bottom;
 
-    // samo lijevo i desno ne radi
-    // let result = a.left <= b.right && b.left <= a.right;
-
     return result;
-  } //// touching
+  } 
 
   /**
-   * Provjerava je li lik kliknut.
-   * @param {MouseInput} m mouse input
+   * Checks if the character was clicked
+   * @param {MouseInput} m Mouse Input
    * @return {boolean}
    */
   clicked(m) {
@@ -432,7 +428,7 @@ class Sprite extends GameWorldObjectAnimator {
     return clicked;
   }
 
-  //#region Strane lika
+  //Sides of the character
   get left() {
     return this.x;
   }
@@ -472,26 +468,24 @@ class Sprite extends GameWorldObjectAnimator {
 
   get oldRight() { return this.x_old + this.width; }
   set oldRight(x) { this.x_old = x - this.width; }
-  //#endregion
 
-
-} //// Sprite
+}
 /**
- * Klasa: PlatformCollider
- * - koristi se za kolizije s platformama
+ * Class: PlatformCollider
+ * - Used for collisions with platforms
  */
 class PlatformCollider {
 
   constructor() { }
 
   /**
-   * Provjerava može li stati na tile.
-   * @param {number} value redni broj u mapi kolizija
-   * @param {Sprite} sprite lik ili predmet igre
-   * @param {number} tile_x x koordinata tile-a kojeg provjeravamo
-   * @param {number} tile_y y koordinata tile-a kojeg provjeravamo
-   * @param {number} tile_w širina tile-a
-   * @param {number} tile_h visina tile-a
+   * Checks if the character can stay on the tile
+   * @param {number} value Ordinal number in the map of collisions
+   * @param {Sprite} sprite Character or an item of the game
+   * @param {number} tile_x x coordinate of the tile which we are checking
+   * @param {number} tile_y y coordinate of the tile which we are checking
+   * @param {number} tile_w Width of the tile
+   * @param {number} tile_h Height of the tile
    * @returns 
    */
   collide(value, sprite, tile_x, tile_y, tile_w, tile_h) {
@@ -499,7 +493,7 @@ class PlatformCollider {
     if (value == 0) return;
 
     if (value == undefined) {
-      //dira dno      
+      //Touches the rock bottom  
       return;
     }
 
@@ -511,9 +505,9 @@ class PlatformCollider {
   }
 
   /**
-   * Ne dozvoljava prolaz ako lik dolazi od dna platforme.
-   * @param {Sprite} sprite Lik
-   * @param {number} tile_bottom y koorinata dna
+   * Doesn't allow passage if the character is coming from the rock bottom
+   * @param {Sprite} sprite Character
+   * @param {number} tile_bottom y coordinate of the rock bottom
    * @returns {boolean}
    */
   collidePlatformBottom(sprite, tile_bottom) {
@@ -529,9 +523,9 @@ class PlatformCollider {
   }
 
   /**
-   * Ne dozvoljava prolaz ako lik dolazi s lijeva od platforme.
-   * @param {Sprite} sprite Lik
-   * @param {number} tile_left x koorinata lijeve strane platforme
+   * Doesn't allow passage if the character is coming from the left side of the platform
+   * @param {Sprite} sprite Character
+   * @param {number} tile_left x coordinate of the left side of the platform
    * @returns {boolean}
    */
   collidePlatformLeft(sprite, tile_left) {
@@ -547,9 +541,9 @@ class PlatformCollider {
   }
 
   /**
-   * Ne dozvoljava prolaz ako lik dolazi s desna od platforme.
-   * @param {Sprite} sprite Lik
-   * @param {number} tile_right x koorinata desne strane platforme
+   * Doesn't allow passage if the character is coming from the right side of the platform
+   * @param {Sprite} sprite Character
+   * @param {number} tile_right x coordinate of the right side of the platform
    * @returns {boolean}
    */
   collidePlatformRight(sprite, tile_right) {
@@ -566,9 +560,9 @@ class PlatformCollider {
 
 
   /**
-  * Ne dozvoljava prolaz ako lik dolazi na vrh platforme.
-  * @param {Sprite} sprite Lik
-  * @param {number} tile_top y koorinata vrha platforme
+  * Doesn't allow passage if the character is coming from the top side of the platform
+  * @param {Sprite} sprite Character
+  * @param {number} tile_top y coordinate of the top side of the platform
   * @returns {boolean}
   */
   collidePlatformTop(sprite, tile_top) {
