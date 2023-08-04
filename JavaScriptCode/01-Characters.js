@@ -124,7 +124,6 @@ class MeatBoy extends PlayableCharacter {
       "walk-left": [2, 3, 4]
     };
     this.visible = true;
-
   };
 };
 
@@ -173,7 +172,7 @@ class Enemy extends Sprite {
 
     this.layer = layer;
     this.visible = true;
-    
+
     //Used for moving
     /*this.move = false;
     this.direction = 90;

@@ -7,8 +7,8 @@ class Stopwatch {
             throw ("This is static class");
         }
     }
-    static ms = 00;
-    static sec = 00;
+    static ms = 0;
+    static sec = 0;
     static startTimer = false;
 }
 
@@ -42,15 +42,15 @@ function cycleTimer() {
  * Used to reset the Stopwatch
  */
 function resetTimer() {
-    Stopwatch.ms = 00;
-    Stopwatch.sec = 00;
+    Stopwatch.ms = 0;
+    Stopwatch.sec = 0;
 }
 
 /**
  * Used to grade your time
  */
 function score() {
-    if (Stopwatch.sec != 00 && Stopwatch.ms != 00) {
+    if (Stopwatch.sec != 0 && Stopwatch.ms != 0) {
         switch (StaticObject.Selected) {
             case "level1":
                 switch (Stopwatch.sec) {

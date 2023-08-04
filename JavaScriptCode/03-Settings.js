@@ -40,9 +40,8 @@ function setup() {
   GAME.clearSprites();
   StaticObject.SpinningSaw = [];
   StaticObject.Wall = [];
-  resetTimer();
   StaticObject.Selected = GAME.activeWorldMap.name;
-
+  resetTimer();
   GameSettings.output(StaticObject.Selected);
   setupLevel();
   if (StaticObject.Meatboy.deathcounter != 0) {
